@@ -1,0 +1,25 @@
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-xs-9'>
+            <h1>マイページ</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <td><%= current_user.name %></td>
+                        <th>自己紹介</th>
+                        <th>好きな時代</th>
+                        <th>好きな武将</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%= current_user.name %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
