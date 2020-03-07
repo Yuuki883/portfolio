@@ -66,7 +66,8 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'meta-tags'
-gem 'bootstrap', '~> 4.2.1'
+
+gem 'bootstrap', '~> 4.3.1'
 gem 'pry-byebug'
 
 group :production do
