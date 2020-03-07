@@ -10,9 +10,11 @@ services:
     volumes:
       - .:/app
       - /var/tmp
+      - bundle-data:/usr/local/bundle
       # socketファイルの共有
       - sockets:/app/tmp/sockets
     tty: true
+    stdin_open: true
     depends_on:
       - db
     extends:
@@ -44,3 +46,4 @@ services:
 volumes:
   db_data:
   sockets:
+  bundle-data:
