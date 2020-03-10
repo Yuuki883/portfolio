@@ -1,0 +1,15 @@
+<html>
+
+<head>
+    <% set_meta_tags title: "みんなの投稿", description: 'このページでは実際にユーザーが訪れた場所を一覧で表示しております。' %>
+</head>
+
+<div class='row'>
+    <div class='col-xs-9'>
+        <%= render 'posts/index', posts: @posts %>
+        <%# <h2>New book</h2>
+        <%= render 'form', book: @book %>
+    </div>
+</div>
+
+</html>
