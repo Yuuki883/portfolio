@@ -1,0 +1,50 @@
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+
+<body>
+    <br>
+    <div class="container-fluid col-md-7">
+        <h1 class="text-align: text-center">
+            <span><%= @user.name.to_s+"さんのマイページ" %></span></h1>
+        <div class="card card-body text-center" style="max-width: 800px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= @user.name %></h5>
+                        <p class="card-text">自己紹介</p>
+                        <p><%= @user.introduce %></p>
+                        <p class="card-text"></p>好きな時代</p>
+                        <p><%= @user.like_age %></p>
+                        <p class="card-text">好きな武将</p>
+                        <p><%= @user.like_busho %></p>
+                        <%# <p class="card-text"><small class="text-muted">最終更新3分前</small></p> %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">アクティブ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">リンク</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">カードのタイトル</h5>
+                <p class="card-text">以下のテキストを追加のコンテンツへの自然な導入としてサポート。</p>
+                <a href="#" class="btn btn-primary">登録する</a>
+            </div>
+        </div>
+    </div>
+</body>
