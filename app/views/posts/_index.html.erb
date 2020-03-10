@@ -1,0 +1,18 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <% posts.each do |post| %>
+            <div class="media user-post">
+                <%= link_to user_path(post.user), class: "align-self-start mr-3" %>
+                <%= attachment_image_tag post.user, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                <div class="media-body">
+                    <h5 class="mt-0"><%= post.place_name %></h5>
+                    <p><%= post.title %></p>
+                    <p><%= post.content %></p>
+                    <p><%= post.image %></p>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</body>

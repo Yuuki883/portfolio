@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
-  # scope module: :users do
-  #   resources :users, only:[:index, :show, :edit]
-  # end
+
+  scope module: :users do
+  resources :users, only:[:index, :show, :edit, :update]
+  end
+
+  resources :posts
+
   root to: 'top#index'
   get "about" => "about#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
