@@ -1,16 +1,14 @@
-.cover-img {
-    height: 800px;
-    display: table;
-    width: 100%;
+.about {
+    background-image: url("japan.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    height: 450px;
 }
 
-.about-context {
-    margin-top: 10%;
+.about-context,
+.btn-primary {
+    margin-top: 20px;
     text-align: left;
-}
-
-.text-muted {
-    display: table-cell;
-    vertical-align: middle;
 }

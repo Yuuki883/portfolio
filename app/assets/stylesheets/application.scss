@@ -19,24 +19,25 @@
 
 @media only screen and (min-width: 1500px) {
 
-    .cover-imgm,
-    .about-context {
-        height: 800px;
+    .top,
+    .about {
+        width: 100%;
     }
 }
 
 @media only screen and (min-width : 768px) and (max-width : 1200px) {
 
-    .cover-img,
-    .about-context {
-        height: 500px;
+    .top,
+    .about {
+        width: 100%;
     }
+
 }
 
 @media only screen and (max-width: 479px) {
 
-    .cover-img,
-    .about-context {
-        height: 300px;
+    .top,
+    .about {
+        width: 100%;
     }
 }
