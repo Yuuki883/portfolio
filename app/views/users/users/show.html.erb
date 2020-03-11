@@ -1,16 +1,22 @@
-<% if flash[:notice] %>
-<p><%= flash[:notice] %></p>
-<% end %>
+<html>
+
+<head>
+    <% set_meta_tags title: "マイページ", description: 'に登録しているユーザーのプロフィールページを表示しております。' %>
+</head>
 
 <body>
+    <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+    <% end %>
     <br>
     <div class="container-fluid col-md-7">
         <h1 class="text-align: text-center">
             <span><%= @user.name.to_s+"さんのマイページ" %></span></h1>
+        <br>
         <div class="card card-body text-center" style="max-width: 800px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                    <%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -26,6 +32,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="card text-center">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
@@ -33,7 +40,7 @@
                         <a class="nav-link active"> <%= @user.name.to_s+"さんの投稿一覧" %></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=edit_user_path">マイページの編集 </a>
+                        <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
