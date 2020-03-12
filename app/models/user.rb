@@ -6,8 +6,8 @@ class User < ApplicationRecord
   
   has_many :posts
 
-  attachment :image, destroy: false
+  attachment :image
 
-  validates :name, presence: true, length: {maximum: 20, minimum: 2}
-  validates :introduction, length: { maximum: 50 }
+  validates :name, presence: true, length: {maximum: 20, minimum: 1}
+  validates :introduce, length: { maximum: 1000 }
 end
