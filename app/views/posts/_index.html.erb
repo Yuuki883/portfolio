@@ -1,18 +1,22 @@
 <body>
     <div class="container">
         <div class="row">
+            <br>
             <% posts.each do |post| %>
             <div class="media user-post">
-                <%= link_to user_path(post.user), class: "align-self-start mr-3" %>
-                <%= attachment_image_tag post.user, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                <%= link_to post.user.name, user_path(post.user), class: "align-self-start mr-3" %>
                 <div class="media-body">
-                    <h5 class="mt-0"><%= post.place_name %></h5>
+                    <h5><%= post.place_name %></h5>
+                    <p><%= post.place_name %></p>
                     <p><%= post.title %></p>
                     <p><%= post.content %></p>
-                    <p><%= post.image %></p>
+                    <% post.post_images.each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                    <% end %>
                 </div>
-                <% end %>
             </div>
+            <% end %>
         </div>
+    </div>
     </div>
 </body>

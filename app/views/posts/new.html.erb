@@ -6,7 +6,7 @@
 
 <body>
     <h1>投稿内容</h1>
-    <%= form_for(post) do |f| %>
+    <%= form_with model:@post do |f| %>
     <div class="field row">
         <%= f.label :place_name %>
         <%= f.text_field :place_name, class: 'col-xs-12 post_place_name' %>
@@ -14,21 +14,15 @@
 
     <div class="field row">
         <%= f.label :post_title %>
-        <%= f.text_area :post_title, class: 'col-xs-12 post_title'%>
+        <%= f.text_area :title, class: 'col-xs-12 post_title'%>
     </div>
 
     <div class="field row">
         <%= f.label :post_content %>
-        <%= f.text_area :post_content, class: 'col-xs-12 post_content'%>
+        <%= f.text_area :content, class: 'col-xs-12 post_content'%>
     </div>
     <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">アップロード</span>
-        </div>
-        <div class="custom-file">
-            <input type="file" id="inputGroupFile01" class="custom-file-input" aria-describedby="inputGroupFileAddon01">
-            <label class="custom-file-label" for="inputGroupFile01" data-browse="参照">ファイル選択...</label>
-        </div>
+        <%= f.attachment_field :post_images_images, multiple: true %>
     </div>
 
     <div class="actions row">
