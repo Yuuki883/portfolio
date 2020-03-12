@@ -25,7 +25,7 @@ class Users::UsersController < ApplicationController
 
    private
    def user_params
-      params.require(:user).permit(:name, :introduce, :image, :like_busho, :like_age)
+      params.require(:user).permit(:name, :introduction, :image, :like_busho, :like_age)
    end
 
    def baria_user

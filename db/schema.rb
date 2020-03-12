@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_072453) do
+ActiveRecord::Schema.define(version: 2020_03_12_055032) do
 
   create_table "post_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_072453) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "image_id"
-    t.text "introduce"
+    t.text "introduction"
     t.text "like_age"
     t.text "like_busho"
     t.datetime "created_at", null: false
