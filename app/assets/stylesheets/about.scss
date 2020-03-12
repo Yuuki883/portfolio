@@ -1,3 +1,14 @@
-// Place all the styles related to the about controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.about {
+    background-image: url("japan.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-attachment: fixed;
+    height: 450px;
+}
+
+.about-context,
+.btn-primary {
+    margin-top: 20px;
+    text-align: left;
+}
