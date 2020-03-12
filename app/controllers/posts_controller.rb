@@ -23,7 +23,7 @@ before_action :correct_user, only: [:edit, :update]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
       if @post.save
-          redirect_to post_path(@post), notice: "successfully created post!"
+          redirect_to posts_path, notice: "successfully created post!"
       else
           @posts = Post.all
           render 'index'
