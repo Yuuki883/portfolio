@@ -2,10 +2,10 @@ class Users::UsersController < ApplicationController
 
    def index
       @user = User.find(current_user.id)
-   end#Ex:- add_index("admin_users", "username")
+   end
 
    def show
-      @user = User.find(params[:id]) #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+      @user = User.find(params[:id])
       @posts = @user.posts
       @post = Post.new
    end

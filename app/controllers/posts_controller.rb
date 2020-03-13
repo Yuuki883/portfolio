@@ -9,12 +9,13 @@ before_action :correct_user, only: [:edit, :update]
     end
 
   def index
+    @post  = Post.new
     @posts = Post.all
     end
 
   def show
     @post = Post.find(params[:id])
-    # @favorite = Favorite.new
+    @favorite = Favorite.new
     # @post_comments = @post.post_comments
     # @post_comment = PostComment.new
     end
@@ -36,8 +37,8 @@ before_action :correct_user, only: [:edit, :update]
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(book_params)
-      redirect_to book_path(@book.id), notice: "successfully updated book!"
+    if @post.update(post_params)
+      redirect_to post_path(@post.id), notice: "successfully updated Your post!"
     else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
       render "edit"
     end
@@ -46,7 +47,7 @@ before_action :correct_user, only: [:edit, :update]
   def destroy
     post = Post.find(params[:id])
     Post.destroy
-    redirect_to books_path, notice: "successfully delete book!"
+    redirect_to posts_path, notice: "successfully delete post!"
   end
 
   private
