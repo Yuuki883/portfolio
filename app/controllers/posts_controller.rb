@@ -9,12 +9,13 @@ before_action :correct_user, only: [:edit, :update]
     end
 
   def index
+    @post  = Post.new
     @posts = Post.all
     end
 
   def show
     @post = Post.find(params[:id])
-    # @favorite = Favorite.new
+    @favorite = Favorite.new
     # @post_comments = @post.post_comments
     # @post_comment = PostComment.new
     end

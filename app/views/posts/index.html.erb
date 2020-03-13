@@ -4,12 +4,35 @@
     <% set_meta_tags title: "みんなの投稿", description: 'このページでは実際にユーザーが訪れた場所を一覧で表示しております。' %>
 </head>
 
-<div class='row'>
-    <div class='col-xs-9'>
-        <%= render 'posts/index', posts: @posts %>
+<body>
+    <div class='container' <div class='row'>
+        <div class='col-xs-9'>
 
-        <%# <%= render 'form', post: @post %> %>
+            <body>
+                <div class="container">
+                    <div class="row">
+                        <br>
+                        <% @posts.each do |post| %>
+                        <div class="media user-post">
+                            <%= link_to post.user.name, user_path(post.user), class: "align-self-start mr-3" %>
+                            <div class="media-body">
+                                <h5><%= post.place_name %></h5>
+                                <p><%= post.place_name %></p>
+                                <p><%= post.title %></p>
+                                <p><%= post.content %></p>
+                                <% post.post_images.each do |image| %>
+                                <%= attachment_image_tag image, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
+                                <% end %>
+                                <div id="favorites_buttons_<%= post.id %>">
+                                    <%= render 'posts/favorite', post: post %>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+        </div>
     </div>
-</div>
+</body>
 
 </html>
