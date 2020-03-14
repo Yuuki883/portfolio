@@ -5,8 +5,6 @@ class CreateFavorites < ActiveRecord::Migration[5.2]
       t.references :post, foreign_key: true
 
       t.timestamps
-
-      drop_table :favorites
     end
   end
 end
