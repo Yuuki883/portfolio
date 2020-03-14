@@ -13,14 +13,16 @@
                 <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
             </div>
             <% end %>
+            <%= link_to 'チャットを始める', chat_path(user.id) %>
             <% end %>
+
             <br>
             <div class="table-responsive">
                 <tr>
                     <div class="follow_count">
                         <th>フォロー:</th>
                         <th>
-                            <%= link_to user.follower.count, user_followers_path(user) %></th>
+                            <%= link_to user.follower.count, user_follows_path(user) %></th>
                     </div>
                     <div class="follow_count">
                         <th>フォロワー:</th>
