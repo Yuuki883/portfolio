@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <% set_meta_tags title: "プロフィール編集", description: 'に登録しているユーザーのプロフィールを編集することができます。' %>
+</head>
+
+<body>
+    <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+    <% end %>
+    <br>
+    <div class="container-fluid col-md-5">
+        <h1 class="text-align: text-center">
+            <span>プロフィール編集</span></h1>
+        <br>
+        <div class="row no-gutters">
+            <div class="card card-body text-center">
+                <%= form_with model:@user do |f| %>
+                <table class="table md-0 table-responsive text-nowrap ">
+                    <tr>
+                        <th>プロフィール画像</th>
+                        <td>
+                            <%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100'%><br>
+                            <%= f.attachment_field :image %>
+                        </td>
+                    <tr>
+                        <th>ユーザー名</th>
+                        <td><%= f.text_field :name %></td>
+                    </tr>
+                    <tr>
+                        <th>自己紹介</th>
+                        <td><%= f.text_area :introduction, size: "40x10" %></td>
+                    </tr>
+                    <tr>
+                        <th>好きな時代</th>
+                        <td><%= f.text_field :like_age %></td>
+                    </tr>
+                    <tr>
+                        <th>好きな武将</th>
+                        <td><%= f.text_field :like_busho %></td>
+                    </tr>
+                </table>
+                <%= f.submit '変更を保存する', class:"btn btn-primary glyphicon glyphicon-wrench btn-lg" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</body>

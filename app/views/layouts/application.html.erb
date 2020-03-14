@@ -12,13 +12,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary rounded">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
             aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbar">
+        <div class="collapse navbar-collapse justify-content-lg-center" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <%= link_to 'Home', root_path, class: "nav-link" %>
@@ -30,25 +30,23 @@
                 <li class="nav-item active">
                     <%= link_to 'みんなの投稿', posts_path, class: "nav-link" %></a>
                 </li>
-                </li>
-
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">ドロップダウン</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <a class="dropdown-item" href="#">リンク1</a>
-                    <a class="dropdown-item" href="#">リンク2</a>
-                    <a class="dropdown-item" href="#">リンク3</a>
-                </div>
                 <li class="nav-item active">
                     <% if user_signed_in? %>
                     <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                    <% else %>
-                    <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
-                    <% end %>
                 </li>
+                <li class="nav-item active">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                </li>
+                <% else %>
+                <li class="nav-item active">
+                    <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+                </li>
+                <% end %>
             </ul>
         </div>
+        <form>
+            <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
+        </form>
     </nav>
 </header>
 

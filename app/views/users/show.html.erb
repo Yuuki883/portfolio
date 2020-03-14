@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <% set_meta_tags title: "マイページ", description: 'に登録しているユーザーのプロフィールページを表示しております。' %>
+</head>
+
+<body>
+    <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+    <% end %>
+    <br>
+    <div class="container-fluid col-md-7">
+        <h1 class="text-align: text-center">
+            マイページ</h1>
+        <%= render 'profile', user: @user,now: ''%>
+
+    </div>
+
+</body>
