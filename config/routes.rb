@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'topics/index'
+  get 'topics/show'
   devise_for :users, controllers: {
   sessions:      'devise/sessions',
   passwords:     'devise/passwords',
@@ -9,6 +11,10 @@ Rails.application.routes.draw do
   root to: 'top#index'
   get "about" => "about#index"
   get 'maps/index'
+
+  resources :topics, only: [:index, :show, :edit, :create, :update, :destroy] do
+    resource :topic_comments, only: [:create, :destroy]
+  end
 
   resources :users, only:[:index, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
