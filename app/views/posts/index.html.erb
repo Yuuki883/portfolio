@@ -11,6 +11,8 @@
             <body>
                 <div class="container">
                     <div class="row">
+                        <%= link_to "投稿してみる", new_post_path, class: "nav-link" %>
+
                         <br>
                         <% @posts.each do |post| %>
                         <div class="media user-post">
