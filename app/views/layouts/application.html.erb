@@ -12,7 +12,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary rounded">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
             aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
@@ -31,6 +31,9 @@
                     <%= link_to 'みんなの投稿', posts_path, class: "nav-link" %></a>
                 </li>
                 <li class="nav-item active">
+                    <%= link_to "掲示板", topics_path, class: "nav-link" %></a>
+                </li>
+                <li class="nav-item active">
                     <% if user_signed_in? %>
                     <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
                 </li>
@@ -44,9 +47,6 @@
                 <% end %>
             </ul>
         </div>
-        <form>
-            <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
-        </form>
     </nav>
 </header>
 

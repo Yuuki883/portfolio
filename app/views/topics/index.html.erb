@@ -1,0 +1,16 @@
+<h1>トピック一覧</h1>
+<ul>
+    <% @topics.each do |topic| %>
+    <li><%= link_to topic.title, topic_path(topic.id) %>
+        <%= link_to topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} do %>
+        <i class="fas fa-trash-alt"></i>
+    </li>
+    <% end %>
+    <% end %>
+</ul>
+
+<h1>トピック新規登録</h1>
+<%= form_with model:@topic do |f| %>
+<%= f.text_field :title %>
+<%= f.submit %>
+<% end %>
