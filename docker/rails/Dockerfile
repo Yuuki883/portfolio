@@ -16,7 +16,7 @@ RUN bundle install -j4
 
 ADD . /app
 
-RUN rails assets:precompile RAILS_ENV=production
+RUN rails assets:precompile
 
 EXPOSE 3000
 
