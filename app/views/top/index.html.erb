@@ -1,16 +1,43 @@
 <head>
+    <% set_meta_tags title: 'Web-Anへようこそ！', description: 'Web-Anのトップページです。このサイトでは歴史好きのユーザーの方達がサイト内で交流することを目的としております。
+    ぜひご登録してご利用ください！' %>
+</head>
+
+<body>
     <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
     <% end %>
-</head>
+    <div class="jumbotron jumbotron-fluid top">
+        <div class="container">
+            <h1 class="display-12 about-context">Web-Anへようこそ</h1><br>
+            <p>このサイトでは歴史好きのユーザーの方達がサイト内で<br>
+                交流できるように様々な機能をご用意しております。</p>
+            <%= link_to "登録はこちら", new_user_registration_path, class: "btn btn-primary rounded-pill" %>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>情報のシェア</h3>
+                <p>今まで訪れた各地の歴史にゆかりのある場所の情報を投稿して、他のユーザーにシェアすることができます。気に入った投稿にはいいねをつけたり、
+                    そのユーザーをフォローすることも可能です。
+                </p>
+                <%= link_to "みんなの投稿をみる", posts_path, class: "btn btn-secondary rounded-pill" %>
+            </div>
+            <div class="col-md-4">
+                <h3>掲示板</h3>
+                <p>ご自分にとって興味のある話題のスレッドを作成したりスレッドに参加することで、サイト内のユーザーとの交流が可能となっております。
+                </p>
+                <%= link_to "掲示板を見る", topics_path, class: "btn btn-secondary rounded-pill" %>
+            </div>
+            <div class="col-md-4">
+                <h3>地図で検索</h3>
+                <p>これまで自分が行ったことのある観光地をを検索して記録することできます。
+                </p>
+                <%= link_to "試しに検索してみよう", maps_path, class: "btn btn-secondary rounded-pill" %>
+            </div>
+        </div>
+    </div>
+</body>
 
-<div class="container">
-    <div class="jumbotron mt-4 top">
-        <h1 class="display-4">こんにちは!</h1>
-        <p class="lead">これは単純なヒーローユニット、注目のコンテンツや情報に特別な注意を喚起するためのシンプルなジャンボトロンスタイルのコンポーネント。</p>
-        <hr class="my-4">
-        <p>より大きなコンテナの範囲内でコンテンツに空間をあけるため、文字の体裁と空白用のユーティリティクラスを使用している。</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">もっと学ぼう</a>
-    </div><!-- /.jumbotron -->
-    ...
-</div><!-- /.container -->
+</html>
