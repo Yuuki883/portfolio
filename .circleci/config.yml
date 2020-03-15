@@ -22,7 +22,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: "nginx-rails-app" # ECSのタスク定義名
-          cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
+          cluster-name: "Rails-Nginx" #ECSのクラスターのARN
           service-name: "ecs-rails-ervice" #サービス名
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   # Railsのデプロイ
@@ -44,7 +44,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: "nginx-rails-app" # ECSのタスク定義名
-          cluster-name: "${ECS_ARN}" #ECSのクラスターのARN
+          cluster-name: "Rails-Nginx" #ECSのクラスターのARN
           service-name: "ecs-rails-ervice" #サービス名
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
 
