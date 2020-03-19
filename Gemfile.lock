@@ -7,6 +7,12 @@ GIT
       rest-client (~> 2)
       sinatra (~> 2.0.0.beta2)
 
+GIT
+  remote: https://github.com/thomaspark/bootswatch.git
+  revision: 446c8b7ed67f9ed86e4d3c95d3d975582f3d5f61
+  specs:
+    bootswatch (4.4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -305,6 +311,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.2.1)
+  bootswatch!
   byebug
   capybara (>= 2.15)
   chromedriver-helper
