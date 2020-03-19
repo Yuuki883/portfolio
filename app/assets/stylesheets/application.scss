@@ -17,6 +17,18 @@
 
 @import "bootstrap";
 
+footer {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    padding: 50px 0;
+    background-color: #848282;
+}
+
+.footer-text {
+    color: #fff;
+}
+
 @media only screen and (min-width: 1500px) {
 
     .top,

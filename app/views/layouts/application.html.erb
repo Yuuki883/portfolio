@@ -42,6 +42,9 @@
                 </li>
                 <% else %>
                 <li class="nav-item active">
+                    <%= link_to '登録する', new_user_registration_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item active">
                     <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
                 </li>
                 <% end %>
@@ -54,7 +57,7 @@
     <%= yield %>
 </body>
 <footer>
-    <p class="footer-text"></p>
+    <p class="footer-text">© All rights reserved by Infratop.Inc.</p>
 </footer>
 
 </html>
