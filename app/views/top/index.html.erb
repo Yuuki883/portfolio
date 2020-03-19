@@ -7,6 +7,7 @@
     <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
     <% end %>
+
     <div class="jumbotron jumbotron-fluid top">
         <div class="container">
             <h1 class="display-12 about-context">Web-Anへようこそ</h1><br>
@@ -22,19 +23,19 @@
                 <p>今まで訪れた各地の歴史にゆかりのある場所の情報を投稿して、他のユーザーにシェアすることができます。気に入った投稿にはいいねをつけたり、
                     そのユーザーをフォローすることも可能です。
                 </p>
-                <%= link_to "みんなの投稿をみる", posts_path, class: "btn btn-secondary rounded-pill" %>
+                <%= link_to "みんなの投稿をみる", posts_path, class: "btn btn-primary rounded-pill" %>
             </div>
             <div class="col-md-4">
                 <h3>掲示板</h3>
                 <p>ご自分にとって興味のある話題のスレッドを作成したりスレッドに参加することで、サイト内のユーザーとの交流が可能となっております。
                 </p>
-                <%= link_to "掲示板を見る", topics_path, class: "btn btn-secondary rounded-pill" %>
+                <%= link_to "掲示板を見る", topics_path, class: "btn btn-primary rounded-pill" %>
             </div>
             <div class="col-md-4">
                 <h3>地図で検索</h3>
                 <p>これまで自分が行ったことのある観光地をを検索して記録することできます。
                 </p>
-                <%= link_to "試しに検索してみよう", maps_path, class: "btn btn-secondary rounded-pill" %>
+                <%= link_to "試しに検索してみよう", maps_path, class: "btn btn-primary rounded-pill" %>
             </div>
         </div>
     </div>

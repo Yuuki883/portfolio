@@ -1,16 +1,38 @@
-<h1>トピック一覧</h1>
-<ul>
-    <% @topics.each do |topic| %>
-    <li><%= link_to topic.title, topic_path(topic.id) %>
-        <%= link_to topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} do %>
-        <i class="fas fa-trash-alt"></i>
-    </li>
-    <% end %>
-    <% end %>
-</ul>
+<head>
+    <% set_meta_tags title: "掲示板", description: 'このページでは現在稼働中の掲示板を一覧で表示しております。ご自分にとって興味のあるトピックを扱っている掲示板に是非ご参加ください。' %>
+</head>
 
-<h1>トピック新規登録</h1>
-<%= form_with model:@topic do |f| %>
-<%= f.text_field :title %>
-<%= f.submit %>
-<% end %>
+<body>
+    <div class="container">
+        <div class="mx-auto text-align: text-center">
+            <br>
+            <h1>掲示板</h1>
+            <h2>
+                <%= link_to "掲示板を作成する", new_topic_path, class:"far fa-plus-square"%>
+            </h2>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">掲示板</th>
+                        <th scope="col">コメント数</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @topics.each do |topic| %>
+                    <tr class="table-primary">
+                        <td><%= link_to topic.title, topic_path(topic.id) %></td>
+                        <td><%= topic.topic_comments.count %></td>
+                        <td><%= link_to topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} do %>
+                            <div class="fas fa-trash-alt">
+                            </div>
+                        </td>
+                        <% end %>
+                        <% end %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
