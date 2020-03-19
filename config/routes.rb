@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "about" => "about#index"
   get 'maps/index'
 
-  resources :topics, only: [:index, :show, :edit, :create, :update, :destroy] do
+  resources :topics, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resource :topic_comments, only: [:create, :destroy]
   end
 

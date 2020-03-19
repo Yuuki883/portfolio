@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <% set_meta_tags title: "掲示板新規作成", description: 'このページで掲示板を新規作成できます。ご自分にとって興味のあるトピックを選んでご自由に作成してください' %>
+</head>
+
+<body>
+    <h2>新規登録</h2>
+    <div class="newtopicform">
+        <%= form_with model:@topic do |f| %>
+        <%= f.text_field :title %>
+        <%= f.submit %>
+        <% end %>
+    </div>
+</body>
+
+</html>
