@@ -1,26 +1,45 @@
-<h2>Log in</h2>
+<head>
+  <% set_meta_tags title: "ログイン", description: 'Web-Anのログインページです。' %>
+</head>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<body>
+  <div class="row">
+    <div class="card mx-auto bg-light col text-center" style="width: 400px;">
+      <h1 class="card-header">
+        <legend>ログイン<legend>
+      </h1>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <form>
+          <fieldset>
+            <div class="form-group">
+              <i class="fas fa-envelope"></i>
+              <%= f.label :メールアドレス %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Eメール" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+            <div class="form-group">
+              <i class="fas fa-lock"></i>
+              <%= f.label :パスワード %><br />
+              <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワード" %>
+            </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+            <% if devise_mapping.rememberable? %>
+            <%= f.check_box :remember_me %>
+            <%= f.label :ログイン状態を維持する %>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "ログイン", class:"btn btn-primary" %>
+            </div>
+            <br>
+            <div class="actions">
+              <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class:"btn btn-warning" %><br />
+            </div>
+          </fieldset>
+        </form>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</body>
