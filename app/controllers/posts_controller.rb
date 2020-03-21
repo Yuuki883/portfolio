@@ -29,7 +29,7 @@ class PostsController < ApplicationController
           render 'index'
         end
       end
-    end
+  end
 
   def edit
     @post = Post.find(params[:id])
