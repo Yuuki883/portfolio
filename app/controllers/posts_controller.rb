@@ -1,34 +1,35 @@
 class PostsController < ApplicationController
-before_action :authenticate_user!,except: [:top]
-before_action :correct_user, only: [:edit, :update]
+    before_action :authenticate_user!,except: [:top]
+    before_action :correct_user, only: [:edit, :update]
 
   def new
     @post = Post.new
     @post.post_images.build
-    end
+  end
 
   def index
     @post  = Post.new
     @posts = Post.all
-    end
+  end
 
   def show
     @post = Post.find(params[:id])
     @favorite = Favorite.new
     # @post_comments = @post.post_comments
     # @post_comment = PostComment.new
-    end
+  end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-      if @post.save
+    if @post.save
           redirect_to posts_path, notice: "successfully created post!"
-      else
+        else
           @posts = Post.all
           render 'index'
+        end
       end
-  end
+    end
 
   def edit
     @post = Post.find(params[:id])
@@ -38,7 +39,7 @@ before_action :correct_user, only: [:edit, :update]
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post.id), notice: "successfully updated Your post!"
-    else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
+    else
       render "edit"
     end
   end
@@ -53,4 +54,3 @@ before_action :correct_user, only: [:edit, :update]
   def post_params
     params.require(:post).permit(:title, :content, :place_name, post_images_images: [])
   end
-end
