@@ -1,59 +1,40 @@
-<div class="card mx-auto col text-center" style="width: 800px;">
+<div class="card mx-auto text-center">
     <div class="row no-gutters">
         <div class="col-md-4">
             <br>
             <%= attachment_image_tag user, :image, :fill, 100, 100, class: "img-rounded
             pull-left profile-thumb", fallback: "no_image.jpg", size:'150x200' %>
-            <% if current_user != user %>
-                <% if current_user.following?(user) %>
-                    <div class="btn_follow_sp ">
-                        <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class:
-                        "btn btn-primary" %>
-                    </div>
-                <% else %>
-                    <div class="btn_unfollow_sp ">
-                        <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class:
-                        "btn btn-success" %>
-                    </div>
-                <% end %>
-            <% end %>
-
+            <div>
+                <%= render "follow_form" %>
+            </div>
             <br>
-            <div class="table-responsive">
-                <tr>
-                    <div class="follow_count">
-                        <th>フォロー:</th>
-                        <th>
-                            <%= link_to user.follower.count, user_follows_path(user) %></th>
-                    </div>
-                    <div class="follow_count">
-                        <th>フォロワー:</th>
-                        <th><%= link_to user.followed.count, user_followers_path(user) %></th>
-                    </th>
-                </div>
-            </tr>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="card-body">
-            <div class="user_header clearfix">
-                <div class="name_wrap">
-                    <h2 class="user_name">
-                        <span><%= user.name%></span>さん</h2>
-                </div>
+            <div class="follow_count">
+                <strong>フォロー:</strong>
+                <%= link_to user.follower.count, user_follows_path(user) %>
+            </div>
+            <div class="follower_count">
+                <strong>フォロワー:</strong>
+                <%= link_to user.followed.count, user_followers_path(user) %>
             </div>
         </div>
-        <p class="card-text">自己紹介</p>
-        <p><%= user.introduction %></p>
-        <p class="card-text"></p>好きな時代</span>
-    <p><%= user.like_age %></p>
-    <p class="card-text">好きな武将</p>
-    <p><%= user.like_busho %></p>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-text fas fa-user-tie">
+                    <%= user.name%>さん</h2>
+                <br>
+                <br>
+                <h3 class="card-text fas fa-clipboard-list">自己紹介</h3>
+                    <p><%= user.introduction %></p>
+                <h3 class="card-text fas fa-clipboard-list">好きな時代</h3>
+                    <p><%= user.like_age %></p>
+                <h3 class="card-text fas fa-clipboard-list">好きな武将</h3>
+                    <p><%= user.like_busho %></p>
+            </div>
+        </div>
     </div>
 </div>
-</div>
 <br>
-<div class="card text-center">
+<div class="card">
 <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">

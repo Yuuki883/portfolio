@@ -1,0 +1,4 @@
+<br>
+<%= form_for(current_user, url: user_relationships_path(@user), method: :post, remote: true) do |f| %>
+<%= f.submit "フォローする", class: "btn btn-success" %>
+<% end%>
