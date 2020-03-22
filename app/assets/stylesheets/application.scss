@@ -14,14 +14,15 @@
  *= require_self
 */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "united/variables";
+@import "cosmo/variables";
 @import "bootstrap";
-@import "united/bootswatch";
+@import "cosmo/bootswatch";
 @import "*"; //
 
 .col_white_amrc {
     color: #FFF;
 }
+
 
 footer {
     width: 100%;
@@ -94,7 +95,7 @@ footer p {
 }
 
 .foote_bottom_ul_amrc li a {
-    color: #999;
+    color: white;
     margin: 0 12px;
 }
 
