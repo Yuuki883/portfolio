@@ -9,4 +9,9 @@ class MessagesController < ApplicationController
             redirect_back(fallback_location: root_path)
         end
     end
+
+    def destroy
+        @message = Message.find_by(params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id))
+        @message.destroy
+    end
 end
