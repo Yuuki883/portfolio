@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   def new
     @topic = Topic.new
   end
-  
+
   def index
     @topic = Topic.new
     @topics = Topic.all
@@ -27,8 +27,9 @@ class TopicsController < ApplicationController
     @topic.destroy
     redirect_to topics_index_path
   end
-end
+
   private
-    def topic_params
-      params.require(:topic).permit(:title)
-    end
+  def topic_params
+    params.require(:topic).permit(:title)
+  end
+end
