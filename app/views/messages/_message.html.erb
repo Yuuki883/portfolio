@@ -1,0 +1,14 @@
+    <% if messages.present? %>
+    <% messages.each do |m| %>
+    <strong>
+        <li><%= link_to m.user.name.to_s+"さん", user_path(m.user_id ) %></li>
+    </strong>
+    <strong><%= m.content %></strong>
+        <%= link_to message_path(m.user.id), method: :delete,data:{confirm:"削除してもよろしいですか？"} do %>
+        <div class="fas fa-trash-alt"></div>
+        <% end %>
+    <% end %>
+    <br>
+    <% else %>
+    <h3 class="text-center">メッセージはまだありません</h3>
+    <% end %>

@@ -1,18 +1,21 @@
-<div class="card mb-3 text-center" style="max-width: 800px;">
+<div class="card mx-auto col text-center" style="width: 800px;">
     <div class="row no-gutters">
         <div class="col-md-4">
             <br>
-            <%= attachment_image_tag user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'150x200' %>
+            <%= attachment_image_tag user, :image, :fill, 100, 100, class: "img-rounded
+            pull-left profile-thumb", fallback: "no_image.jpg", size:'150x200' %>
             <% if current_user != user %>
-            <% if current_user.following?(user) %>
-            <div class="btn_follow_sp ">
-                <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
-            </div>
-            <% else %>
-            <div class="btn_unfollow_sp ">
-                <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
-            </div>
-            <% end %>
+                <% if current_user.following?(user) %>
+                    <div class="btn_follow_sp ">
+                        <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class:
+                        "btn btn-primary" %>
+                    </div>
+                <% else %>
+                    <div class="btn_unfollow_sp ">
+                        <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class:
+                        "btn btn-success" %>
+                    </div>
+                <% end %>
             <% end %>
 
             <br>
@@ -26,50 +29,50 @@
                     <div class="follow_count">
                         <th>フォロワー:</th>
                         <th><%= link_to user.followed.count, user_followers_path(user) %></th>
-                        </th>
-                    </div>
-                </tr>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <div class="user_header clearfix">
-                    <div class="user_header clearfix">
-                        <div class="name_wrap">
-                            <h2 class="user_name"><span><%= user.name%></span>さん
-                        </div>
-                    </div>
+                    </th>
                 </div>
-                <p class="card-text">自己紹介</p>
-                <p><%= user.introduction %></p>
-                <p class="card-text"></p>好きな時代</span>
-                <p><%= user.like_age %></p>
-                <p class="card-text">好きな武将</p>
-                <p><%= user.like_busho %></p>
-                <%# <p class="card-text"><small class="text-muted">最終更新3分前</small></p> %>
-            </div>
+            </tr>
         </div>
     </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <div class="user_header clearfix">
+                <div class="name_wrap">
+                    <h2 class="user_name">
+                        <span><%= user.name%></span>さん</h2>
+                </div>
+            </div>
+        </div>
+        <p class="card-text">自己紹介</p>
+        <p><%= user.introduction %></p>
+        <p class="card-text"></p>好きな時代</span>
+    <p><%= user.like_age %></p>
+    <p class="card-text">好きな武将</p>
+    <p><%= user.like_busho %></p>
+    </div>
+</div>
 </div>
 <br>
 <div class="card text-center">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-                <a class="nav-link active"> <%= user.name.to_s+"さんの投稿一覧" %></a>
-            </li>
+<div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+            <a class="nav-link active">
+                <%= user.name.to_s+"さんの投稿一覧" %></a>
+        </li>
+        <% if @user == current_user %>
             <li class="nav-item">
                 <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-
+                <%= link_to "チャット一覧", rooms_path, class:"nav-link" %>
             </li>
-        </ul>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text"></p>
-        ・
-    </div>
+        <% else %>
+        <% end %>
+    </ul>
+</div>
+<div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
 </div>
 </div>
