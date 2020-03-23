@@ -17,7 +17,9 @@
                         <div class="card-body">
                             <div class="name_wrap">
                                 <%= link_to post.user.name, user_path(post.user), class: "align-self-start mr-3" %>
-                                <h5 class="card-title"><%= post.place_name %></h5>
+                                <%= post.id %>
+                                <h4 class="card-title"><%= post.place_name %></h4>
+                                <h5 class="card-title"><%= post.title %></h5>
                                 <p class="card-text"><%= post.content %></p>
                                 <% post.post_images.each do |image| %>
                                 <%= attachment_image_tag image, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
@@ -25,6 +27,7 @@
                                 <div id="favorites_buttons_<%= post.id %>">
                                     <%= render 'posts/favorite', post: post %>
                                 </div>
+                                <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
                             </div>
                         </div>
                         <% end %>
