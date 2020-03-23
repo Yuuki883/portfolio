@@ -8,31 +8,29 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post  = Post.new
     @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @postnew = Post.new
     @favorite = Favorite.new
-    # @post_comments = @post.post_comments
-    # @post_comment = PostComment.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-          redirect_to posts_path, notice: "successfully created post!"
-        else
-          @posts = Post.all
-          render 'index'
-        end
-      end
+      redirect_to posts_path, notice: "successfully created post!"
+    else
+      @posts = Post.all
+      render 'index'
+    end
   end
 
   def edit
     @post = Post.find(params[:id])
+    @post.post_images.build
   end
 
   def update
@@ -46,7 +44,7 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    Post.destroy
+    post.destroy
     redirect_to posts_path, notice: "successfully delete post!"
   end
 
@@ -54,3 +52,11 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :place_name, post_images_images: [])
   end
+
+  def correct_user
+    post = Post.find(params[:id])
+    if current_user.id != post.user.id
+      redirect_to posts_path
+    end
+  end
+end

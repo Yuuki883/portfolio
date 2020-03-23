@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+   before_action :authenticate_user!
+   before_action :baria_user, only: [:edit, :update]
 
    def index
       @user = User.find(current_user.id)
@@ -7,7 +9,6 @@ class UsersController < ApplicationController
    def show
       @user = User.find(params[:id])
       @posts = @user.posts
-      @post = Post.new
       @currentUserEntry = Entry.where(user_id: current_user.id)
       @userEntry = Entry.where(user_id: @user.id)
       if @user.id == current_user.id
@@ -59,7 +60,7 @@ class UsersController < ApplicationController
 
    def baria_user
       unless params[:id].to_i == current_user.id
-         redirect_to user_path(current_user)
+         redirect_to root_path
       end
    end
 end

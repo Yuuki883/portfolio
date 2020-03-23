@@ -1,78 +1,90 @@
-<div class="card mx-auto col text-center" style="width: 800px;">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <br>
-            <%= attachment_image_tag user, :image, :fill, 100, 100, class: "img-rounded
-            pull-left profile-thumb", fallback: "no_image.jpg", size:'150x200' %>
-            <% if current_user != user %>
-                <% if current_user.following?(user) %>
-                    <div class="btn_follow_sp ">
-                        <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class:
-                        "btn btn-primary" %>
-                    </div>
-                <% else %>
-                    <div class="btn_unfollow_sp ">
-                        <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class:
-                        "btn btn-success" %>
-                    </div>
-                <% end %>
-            <% end %>
-
-            <br>
-            <div class="table-responsive">
-                <tr>
-                    <div class="follow_count">
-                        <th>フォロー:</th>
-                        <th>
-                            <%= link_to user.follower.count, user_follows_path(user) %></th>
-                    </div>
-                    <div class="follow_count">
-                        <th>フォロワー:</th>
-                        <th><%= link_to user.followed.count, user_followers_path(user) %></th>
-                    </th>
+<div class="card mx-auto text-center">
+    <div class="card-body">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <br>
+                <%= attachment_image_tag user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'240x240' %>
+                <div class="d-flex justify-content-start">
+                    <br>
+                    <%= render "follow_form" %>
+                    <% if @user.id == current_user.id %>
+                    <% else %>
+                    <br>
+                    <%= render 'rooms/room', room: @room, roomId: @roomId, isRoom: @isRoom, entry: @entry, user: @user %>
+                    <% end %>
                 </div>
-            </tr>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="card-body">
-            <div class="user_header clearfix">
-                <div class="name_wrap">
-                    <h2 class="user_name">
-                        <span><%= user.name%></span>さん</h2>
+                <br>
+                <div class="count">
+                    <strong>フォロー</strong>
+                    <%= link_to user.follower.count, user_follows_path(user) %>
+                    |
+                    <strong>フォロワー</strong>
+                    <%= link_to user.followed.count, user_followers_path(user) %>
                 </div>
             </div>
+            <div class="col-md-8">
+                <br>
+                <h2 class="card-text fas fa-user-tie">
+                    <%= user.name%>さん</h2>
+                <br>
+                <br>
+                <h3 class="card-text fas fa-clipboard-list">自己紹介</h3>
+                <p><%= user.introduction %></p>
+                <h3 class="card-text fas fa-clipboard-list">好きな時代</h3>
+                <p><%= user.like_age %></p>
+                <h3 class="card-text fas fa-clipboard-list">好きな武将</h3>
+                <p><%= user.like_busho %></p>
+            </div>
         </div>
-        <p class="card-text">自己紹介</p>
-        <p><%= user.introduction %></p>
-        <p class="card-text"></p>好きな時代</span>
-    <p><%= user.like_age %></p>
-    <p class="card-text">好きな武将</p>
-    <p><%= user.like_busho %></p>
     </div>
 </div>
-</div>
 <br>
-<div class="card text-center">
-<div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-            <a class="nav-link active">
-                <%= user.name.to_s+"さんの投稿一覧" %></a>
-        </li>
-        <% if @user == current_user %>
+<div class="card">
+    <div class="card-header bg-light">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active">
+                    <%= user.name.to_s+"さんの投稿一覧" %></a>
+            </li>
+            <% if @user == current_user %>
             <li class="nav-item">
                 <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
                 <%= link_to "チャット一覧", rooms_path, class:"nav-link" %>
             </li>
-        <% else %>
-        <% end %>
-    </ul>
+            <% else %>
+            <% end %>
+        </ul>
+    </div>
 </div>
-<div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text"></p>
+<% @posts.each do |post| %>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="card-title"><%= post.place_name %></h4>
+        </div>
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.content %></p>
+        <div class="img-rounded pull-left profile-thum">
+            <% post.post_images.each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+            <% end %>
+        </div>
+        <div id="favorites_buttons_<%= post.id %>">
+            <%= render 'posts/favorite', post: post %>
+        </div>
+        <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
+    </div>
 </div>
+<% end %>
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">カードのタイトル</h5>
+        <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。このコンテンツはもう少し長くなります。</p>
+        <p class="card-text"><small class="text-muted">最終更新3分前</small></p>
+    </div>
+    <img class="card-img-bottom" src="..." alt="カードの画像">
 </div>

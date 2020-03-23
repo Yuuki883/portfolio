@@ -1,0 +1,25 @@
+<div class="container-fluid mx-auto" style="max-width: 800px;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <%= @post.user.name %>
+            </h4>
+            <h5 class="card-text">
+                <strong><%= @post.place_name %></strong>
+            </h5>
+            <h5 class="card-text">
+                <%= @post.title %>
+            </h5>
+            <p class="card-text"><%= @post.content %></p>
+            <div class="img-rounded pull-left profile-thum">
+                <% @post.post_images.each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+                <% end %>
+            </div>
+            <% if current_user.id == @post.user.id %>
+            <%= link_to "編集", edit_post_path(@post.id), class:"fas fa-edit"%>
+            <%= link_to "削除", post_path(@post.id), class:"fas fa-trash-alt", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+            <% end %>
+        </div>
+    </div>
+</div>

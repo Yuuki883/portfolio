@@ -1,0 +1,5 @@
+<%= form_for(current_user, url: user_relationships_path(@user), method: :post, remote: true) do |f| %>
+<%= button_tag(class:"btn btn-success rounded-pill btn-sm") do %>
+<%= content_tag :span, "フォロー", class: "fas fa-user-plus"%>
+<% end %>
+<% end %>

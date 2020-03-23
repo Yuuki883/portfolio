@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <% set_meta_tags title: "投稿編集", description: "に登録しているユーザーが投稿した内容を編集することができます。"%>
+</head>
+
+<body>
+    <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+    <% end %>
+    <br>
+    <div class="container-fluid col-md7">
+        <h1 class="text-align: text-center">
+            <span>投稿編集</span></h1>
+        <%= render "posts/form", post: @post%>
+
+        <br>
+
+    </div>
+</body>
+
+</head>

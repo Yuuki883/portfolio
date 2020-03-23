@@ -1,12 +1,10 @@
 <% if current_user.already_favorited?(post) %>
 <%= link_to post_favorites_path(post, post_id: post.id), method: :delete, remote: true do %>
-<span class="far fa-thumbs-up"></span>
-<%= post.favorites.count %>
-いいね
+<span class="fas fa-thumbs-up">
+    <%= post.favorites.count.to_s+"いいね" %></span>
 <% end %>
 <% else %>
 <%= link_to post_favorites_path(post, post_id: post.id), method: :post, remote: true do %>
-<span class="far fa-thumbs-up"><%= post.favorites.count %></span>
-
+<span class="far fa-thumbs-up"><%= post.favorites.count.to_s+"いいね" %></span>
 <% end %>
 <% end %>

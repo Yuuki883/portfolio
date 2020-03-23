@@ -1,6 +1,6 @@
-<h2>Follower Users</h2>
+<h2>フォロワー</h2>
 <% if @users.count > 0 %>
-<%= render '/users/index', users: @users %>
+<%= render '/users/follower&followed', users: @users %>
 <% else %>
 <p>ユーザーはいません</p>
 <% end %>
