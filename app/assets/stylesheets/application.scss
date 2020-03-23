@@ -14,9 +14,9 @@
  *= require_self
 */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "cosmo/variables";
+@import "simplex/variables";
 @import "bootstrap";
-@import "cosmo/bootswatch";
+@import "simplex/bootswatch";
 @import "*"; //
 
 .col_white_amrc {
