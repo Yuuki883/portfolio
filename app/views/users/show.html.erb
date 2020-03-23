@@ -9,14 +9,10 @@
     <p><%= flash[:notice] %></p>
     <% end %>
     <br>
-    <div class="container-fluid col-md-7">
+    <div class="container-fluid mx-auto" style="max-width: 800px;">
         <h1 class="text-align: text-center">
+            <i class="fas fa-address-card"></i>
             マイページ</h1>
         <%= render 'profile', user: @user,now: ''%>
-
-        <% if @user.id == current_user.id %>
-        <% else %>
-        <%= render 'rooms/room', room: @room, roomId: @roomId, isRoom: @isRoom, entry: @entry, user: @user %>
-        <% end %>
     </div>
 </body>
