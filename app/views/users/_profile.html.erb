@@ -14,6 +14,13 @@
                     <% end %>
                 </div>
                 <br>
+            </div>
+            <div class="col-md-8">
+                <br>
+                <h2 class="card-text fas fa-user-tie">
+                    <%= user.name%>さん</h2>
+                <br>
+                <br>
                 <div class="count">
                     <strong>フォロー</strong>
                     <%= link_to user.follower.count, user_follows_path(user) %>
@@ -21,12 +28,6 @@
                     <strong>フォロワー</strong>
                     <%= link_to user.followed.count, user_followers_path(user) %>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <br>
-                <h2 class="card-text fas fa-user-tie">
-                    <%= user.name%>さん</h2>
-                <br>
                 <br>
                 <h3 class="card-text fas fa-clipboard-list">自己紹介</h3>
                 <p><%= user.introduction %></p>
@@ -62,9 +63,9 @@
 <div class="card">
     <div class="card-body">
         <div class="card-title">
-            <h4 class="card-title"><%= post.place_name %></h4>
+            <h4 class="card-title"><strong><%= post.place_name %></strong></h4>
         </div>
-        <h5 class="card-title"><%= post.title %></h5>
+        <h5 class="card-title"><strong><%= post.title %><strong></h5>
         <p class="card-text"><%= post.content %></p>
         <div class="img-rounded pull-left profile-thum">
             <% post.post_images.each do |image| %>
@@ -78,13 +79,3 @@
     </div>
 </div>
 <% end %>
-
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">カードのタイトル</h5>
-        <p class="card-text">これは、追加コンテンツへの自然な導入として以下のテキストをサポートする、より幅広いカードです。このコンテンツはもう少し長くなります。</p>
-        <p class="card-text"><small class="text-muted">最終更新3分前</small></p>
-    </div>
-    <img class="card-img-bottom" src="..." alt="カードの画像">
-</div>

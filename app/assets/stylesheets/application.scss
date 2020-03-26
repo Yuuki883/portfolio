@@ -19,6 +19,18 @@
 @import "simplex/bootswatch";
 @import "*"; //
 
+.body,
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: ghostwhite;
+}
+
+.footer {
+    margin-top: auto;
+}
+
 .col_white_amrc {
     color: #FFF;
 }

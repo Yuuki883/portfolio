@@ -1,25 +1,26 @@
 <body>
-    <%= form_with model:@post do |f| %>
-    <div class="field row">
-        <%= f.label :place_name %>
-        <%= f.text_field :place_name, class: 'col-xs-12 post_place_name' %>
+    <div class="mx-auto">
+        <%= form_with model:@post do |f| %>
+        <form>
+            <div class="form-group">
+                <strong><%= f.label :訪れた場所, class:"fas fa-clipboard-list"%></strong>
+                <%= f.text_field :place_name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <strong><%= f.label :タイトル, class:"fas fa-clipboard-list" %></strong>
+                <%= f.text_area :title, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+                <strong><%= f.label :本文, class:"fas fa-clipboard-list" %></strong>
+                <%= f.text_area :content, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+                <strong><%= f.label :投稿画像, class:"fas fa-images" %></strong>
+                <%= f.attachment_field :post_images_images, multiple: true, class:"form-control-file" %>
+                <small class="text-danger">画像は5枚まで投稿できます</small>
+            </div>
+            <%= f.submit "投稿する", class:'btn btn-primary'%>
+        </form>
+        <% end %>
     </div>
-
-    <div class="field row">
-        <%= f.label :post_title %>
-        <%= f.text_area :title, class: 'col-xs-12 post_title'%>
-    </div>
-
-    <div class="field row">
-        <%= f.label :post_content %>
-        <%= f.text_area :content, class: 'col-xs-12 post_content'%>
-    </div>
-    <div class="input-group mb-3">
-        <%= f.attachment_field :post_images_images, multiple: true %>
-    </div>
-
-    <div class="actions row">
-        <%= f.submit class: 'btn btn-primary col-xs-12'%>
-    </div>
-    <% end %>
 </body>
