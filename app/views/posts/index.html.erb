@@ -5,36 +5,44 @@
 </head>
 
 <body>
-    <div class='container'>
-        <div class='col-xs-9'>
-            <div class="container">
-                <div class="row">
-                    <%= link_to "投稿してみる", new_post_path, class: "nav-link" %>
-
-                    <br>
-                    <div class="card" style="width: 18rem;">
-                        <% @posts.each do |post| %>
-                        <div class="card-body">
-                            <div class="name_wrap">
-                                <%= link_to post.user.name, user_path(post.user), class: "align-self-start mr-3" %>
-                                <%= post.id %>
-                                <h4 class="card-title"><%= post.place_name %></h4>
-                                <h5 class="card-title"><%= post.title %></h5>
-                                <p class="card-text"><%= post.content %></p>
-                                <% post.post_images.each do |image| %>
-                                <%= attachment_image_tag image, :image, :fill, 60, 60, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg" %>
-                                <% end %>
-                                <div id="favorites_buttons_<%= post.id %>">
-                                    <%= render 'posts/favorite', post: post %>
-                                </div>
-                                <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
-                            </div>
-                        </div>
+    <br>
+    <h1 class="text-align: text-center">
+        <i class="fas fa-clipboard"></i>
+        みんなの投稿</h1>
+    <div class="container mx-auto">
+        <div class="post_circle text-center">
+            <h2><%= link_to "投稿する！", new_post_path, class: "fas fa-plus-circle" %></h2>
+        </div>
+        <% @posts.each do |post| %>
+        <div class="row mx-auto">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 ">
+                <div class="post_user mx-auto text-center">
+                    <%= attachment_image_tag post.user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
+                    <h3><strong><%= link_to post.user.name, user_path(post.user)%></strong></h3>
+                </div>
+            </div>
+            <div class="card col-lg-9 col-md-7 balloon2-left">
+                <div class=" card-body">
+                    <div class="card-title">
+                        <h4 class="card-title"><strong><%= post.place_name %></strong>
+                            <small class="float-right"><%= post.created_at %></small>
+                        </h4>
+                    </div>
+                    <h5 class="card-title"><strong><%= post.title %></strong></h5>
+                    <p class="card-text"><%= post.content %></p>
+                    <div class="img-rounded pull-left profile-thum">
+                        <% post.post_images.each do |image| %>
+                        <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
                         <% end %>
                     </div>
+                    <div id="favorites_buttons_<%= post.id %>">
+                        <%= render 'posts/favorite', post: post %>
+                    </div>
+                    <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
                 </div>
             </div>
         </div>
+        <% end %>
     </div>
 </body>
 
