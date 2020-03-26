@@ -3,7 +3,7 @@ class UsersController < ApplicationController
    before_action :baria_user, only: [:edit, :update]
 
    def index
-      @user = User.find(current_user.id)
+      @users = User.all
    end
 
    def show
