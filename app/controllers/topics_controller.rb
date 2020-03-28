@@ -18,14 +18,28 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user_id = current_user.id
     @topic.save
-    redirect_to topics_index_path
+    redirect_to edit_topic_path(@topic.id), notice: "掲示板を作成しました！"
+  end
+
+  def edit
+    @topic = Topic.find(params[:id])
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+    if @topic.update(topic_params)
+      redirect_to edit_topic_path(@topic.id), notice: "掲示板のタイトルを更新しました！"
+    else
+      render "edit"
+    end
   end
 
   def destroy
-    @topic = Topic.find(params[:id])
-    @topic.destroy
-    redirect_to topics_index_path
+    topic = Topic.find(params[:id])
+    topic.destroy
+    redirect_to topics_path, notice: "掲示板を削除しました"
   end
 
   private
