@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path, notice: "successfully created post!"
+      redirect_to post_path(@post), notice: "投稿に成功しました!"
     else
       @posts = Post.all
       render 'index'
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id), notice: "successfully updated Your post!"
+      redirect_to post_path(@post.id), notice: "投稿内容を更新しました!"
     else
       render "edit"
     end
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path, notice: "successfully delete post!"
+    redirect_to posts_path, notice: "投稿を削除しました!"
   end
 
   private

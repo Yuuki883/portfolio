@@ -12,42 +12,35 @@
 
 .balloon2-left {
     position: relative;
-    display: inline-block;
-    margin: 1.5em 0 1.5em 15px;
-    padding: 7px 10px;
-    min-width: 120px;
-    max-width: 100%;
     color: #555;
-    font-size: 16px;
     background: #FFF;
-    border: solid 3px #d3d3d3;
-    box-sizing: border-box;
+    border: 2px solid #d3d3d3;
     border-radius: 10px;
+    margin-top: 2%;
 }
 
-.balloon2-left:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -24px;
-    margin-top: -82px;
-    border: 12px solid transparent;
-    border-right: 12px solid #FFF;
-    z-index: 2;
-}
+// .balloon2-left:before {
+//     content: '';
+//     position: absolute;
+//     display: block;
+//     width: 0;
+//     height: 0;
+//     left: -15px;
+//     top: 20px;
+//     border-right: 15px solid #FFF;
+//     border-top: 15px solid transparent;
+//     border-bottom: 15px solid transparent;
+// }
 
-.balloon2-left:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -30px;
-    margin-top: -84px;
-    border: 14px solid transparent;
-    border-right: 14px solid #d3d3d3;
-    z-index: 1;
-}
-
-.balloon2-left p {
-    margin: 0;
-    padding: 0;
-}
+// .balloon2-left:after {
+//     content: '';
+//     position: absolute;
+//     display: block;
+//     width: 0;
+//     height: 0;
+//     left: -12px;
+//     top: 20px;
+//     border-right: 15px solid #d3d3d3;
+//     border-top: 15px solid transparent;
+//     border-bottom: 15px solid transparent;
+// }
