@@ -70,7 +70,7 @@ gem 'jquery-rails'
 gem 'meta-tags'
 gem 'sitemap_generator'
 gem "gretel"
-gem 'bootstrap', '~> 4.2.1'
+gem 'bootstrap', '~> 4.3.1'
 gem "bootswatch", github: "thomaspark/bootswatch"
 gem 'pry-byebug'
 
