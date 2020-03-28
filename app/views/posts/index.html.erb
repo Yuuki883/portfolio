@@ -6,10 +6,12 @@
 
 <body>
     <br>
-    <h1 class="text-align: text-center">
-        <i class="fas fa-clipboard"></i>
+    <h1 class="fas fa-clipboard text-align: text-center">
         みんなの投稿</h1>
-    <div class="container mx-auto">
+    <% if flash[:notice] %>
+    <strong class="alert alert-danger text-center"><%= flash[:notice] %></strong>
+    <% end %>
+    <div class="container">
         <div class="post_circle text-center">
             <h2><%= link_to "投稿する！", new_post_path, class: "fas fa-plus-circle" %></h2>
         </div>
@@ -23,11 +25,10 @@
             </div>
             <div class="card col-lg-9 col-md-7 balloon2-left">
                 <div class=" card-body">
-                    <div class="card-title">
-                        <h4 class="card-title"><strong><%= post.place_name %></strong>
-                            <small class="float-right"><%= post.created_at %></small>
-                        </h4>
-                    </div>
+                    <small class="float-right"><%= post.created_at %></small>
+                    <h4 class="card-title">
+                        <strong><%= post.place_name %></strong>
+                    </h4>
                     <h5 class="card-title"><strong><%= post.title %></strong></h5>
                     <p class="card-text"><%= post.content %></p>
                     <div class="img-rounded pull-left profile-thum">

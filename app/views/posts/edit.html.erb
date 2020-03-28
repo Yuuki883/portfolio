@@ -9,13 +9,11 @@
     <p><%= flash[:notice] %></p>
     <% end %>
     <br>
-    <div class="container-fluid col-md7">
+    <div class="container">
         <h1 class="text-align: text-center">
-            <span>投稿編集</span></h1>
+            <strong class="fas fa-edit">投稿編集</strong></h1>
         <%= render "posts/form", post: @post%>
-
         <br>
-
     </div>
 </body>
 

@@ -1,25 +1,42 @@
-<div class="container-fluid mx-auto" style="max-width: 800px;">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">
-                <%= @post.user.name %>
-            </h4>
-            <h5 class="card-text">
-                <strong><%= @post.place_name %></strong>
-            </h5>
-            <h5 class="card-text">
-                <%= @post.title %>
-            </h5>
-            <p class="card-text"><%= @post.content %></p>
-            <div class="img-rounded pull-left profile-thum">
-                <% @post.post_images.each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
-                <% end %>
+<body>
+    <br>
+    <h1 class="text-center"><strong class="fas fa-search-plus">投稿詳細</strong></h1>
+    <% if flash[:notice] %>
+    <strong class="alert alert-success text-center"><%= flash[:notice] %></strong>
+    <% end %>
+    <div class="container" style="max-width: 800px;">
+        <div class="row mx-auto">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 ">
+                <div class="post_user mx-auto text-center">
+                    <h2><%= attachment_image_tag @post.user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
+                    </h2>
+                    <h3><strong><%= link_to @post.user.name, user_path(@post.user)%></strong></h3>
+                </div>
             </div>
-            <% if current_user.id == @post.user.id %>
-            <%= link_to "編集", edit_post_path(@post.id), class:"fas fa-edit"%>
-            <%= link_to "削除", post_path(@post.id), class:"fas fa-trash-alt", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
-            <% end %>
+            <div class="card col-lg-9 col-md-7 balloon2-left">
+                <div class=" card-body">
+                    <small class="float-right"><%= @post.created_at %></small>
+                    <h4 class="card-title">
+                        <strong><%= @post.place_name %></strong>
+                    </h4>
+                    <h5 class="card-text">
+                        <strong><%= @post.title %></strong>
+                    </h5>
+                    <p class="card-text"><%= @post.content %></p>
+                    <div class="img-rounded pull-left profile-thum">
+                        <% @post.post_images.each do |image| %>
+                        <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+                        <% end %>
+                    </div>
+                    <div id="favorites_buttons_<%= @post.id %>">
+                        <%= render 'posts/favorite', post: @post %>
+                    </div>
+                    <% if current_user.id == @post.user.id %>
+                    <%= link_to "編集", edit_post_path(@post.id), class:"fas fa-edit"%>
+                    <%= link_to "削除", post_path(@post.id), class:"fas fa-trash-alt", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+                    <% end %>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</body>
