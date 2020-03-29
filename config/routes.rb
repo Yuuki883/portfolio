@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 }
 
   root to: 'top#index'
-  get "about" => "about#index"
+  get 'about' => 'about#index'
   get 'maps/index'
 
   resources :topics do
@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :users, only:[:index, :show, :edit, :update] do
+    get 'topics' => 'users#topics'
     resource :relationships, only: [:create, :destroy]
-    get 'follows' => 'relationships#follower', as: 'follows'
-    get 'followers' => 'relationships#followed', as: 'followers'
+    get 'follows' => 'relationships#followed', as: 'followers'
+    get 'followers' => 'relationships#follower', as: 'follows'
   end
 
   resources :posts do
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :messages, :only => [:create, :destroy]
-  resources :rooms, :only => [:index, :show, :create]
+  resources :rooms, :only => [:index, :show, :create, :destroy]
 
   resources :maps, only:[:index]
 end

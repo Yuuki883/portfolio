@@ -20,13 +20,12 @@
                 <h2 class="card-text fas fa-user-tie">
                     <%= user.name%>さん</h2>
                 <br>
-                <br>
                 <div class="count">
                     <strong>フォロー</strong>
-                    <%= link_to user.follower.count, user_follows_path(user) %>
+                    <%= link_to user.follower.count, user_followers_path(user) %>
                     |
                     <strong>フォロワー</strong>
-                    <%= link_to user.followed.count, user_followers_path(user) %>
+                    <%= link_to user.followed.count, user_follows_path(user) %>
                 </div>
                 <br>
                 <h3 class="card-text fas fa-clipboard-list">自己紹介</h3>
@@ -45,14 +44,17 @@
         <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
                 <a class="nav-link active">
-                    <%= user.name.to_s+"さんの投稿一覧" %></a>
+                    <%= user.name.to_s+"さんの投稿" %></a>
             </li>
             <% if @user == current_user %>
             <li class="nav-item">
-                <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
+                <%= link_to "作成した掲示板", user_topics_path(@user.id), class:"nav-link" %>
             </li>
             <li class="nav-item">
                 <%= link_to "チャット一覧", rooms_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
             </li>
             <% else %>
             <% end %>
