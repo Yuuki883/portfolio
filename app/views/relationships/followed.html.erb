@@ -1,6 +1,10 @@
-<h2>フォロワー</h2>
-<% if @users.count > 0 %>
-<%= render '/users/follower&followed', users: @users %>
-<% else %>
-<p>ユーザーはいません</p>
-<% end %>
+<body>
+    <br>
+    <h1 class="text-center"><strong class="fas fa-user-friends">フォロー中</strong></h1>
+    <br>
+    <% if @users.count > 0 %>
+    <%= render '/users/follower&followed', users: @users %>
+    <% else %>
+    <p>ユーザーはいません</p>
+    <% end %>
+</body>
