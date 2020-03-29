@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
     def create
         if Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id]).present?
-            @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id))
+            @message = Message.create(message_params.merge(:user_id => current_user.id))
             redirect_to "/rooms/#{@message.room_id}"
         else
             redirect_back(fallback_location: root_path)
@@ -11,7 +11,15 @@ class MessagesController < ApplicationController
     end
 
     def destroy
-        @message = Message.find_by(params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id))
+        @message = Message.find(params[:id][:user_id][:room_id])
+        room=room.find_by_id(params[:room])
         @message.destroy
+        # message = Message.find(message_params.merge(:user_id => current_user.id))
+        message.destroy
+    end
+
+    private
+    def message_params
+        params.require(:message).permit(:user_id, :content, :room_id)
     end
 end

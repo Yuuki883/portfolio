@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
     before_action :authenticate_user!
 
     def index
+        @rooms = Room.all
+        @user = @current_user
         @currentEntries = current_user.entries
             myRoomIds = []
         @currentEntries.each do |entry|
@@ -13,8 +15,8 @@ class RoomsController < ApplicationController
     def show
         @room = Room.find(params[:id])
         if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
-            @messages = @room.messages
             @message = Message.new
+            @messages = @room.messages
             @entries = @room.entries
         else
             redirect_back(fallback_location: root_path)
@@ -26,5 +28,11 @@ class RoomsController < ApplicationController
         @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)
         @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(:room_id => @room.id))
         redirect_to "/rooms/#{@room.id}"
+    end
+
+    def destroy
+        room = Room.find(params[:id])
+        room.destroy
+        redirect_to rooms_path, notice: "チャットルームを削除しました!"
     end
 end
