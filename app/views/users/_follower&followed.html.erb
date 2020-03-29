@@ -1,8 +1,10 @@
-<table class='table'>
+<table class='table text-center'>
     <thead>
         <tr>
-            <th>写真</th>
+            <th>プロフィール画像</th>
             <th>ユーザー</th>
+            <th>フォロー</th>
+            <th>フォロワー</th>
             <th colspan="3"></th>
         </tr>
     </thead>
@@ -10,12 +12,11 @@
     <tbody>
         <% users.each do |user| %>
         <tr>
-            <td><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback:
-                    "no_image.jpg") %></td>
-            <td><%= user.name %></td>
-            <td>フォロー：<%= user.follower.count %></td>
-            <td>フォロワー：<%= user.followed.count %></td>
-            <td><%= link_to 'Show', user_path(user.id) %></td>
+            <td><%= attachment_image_tag(user, :image, :fill, 100, 100, fallback:
+                    "no_image.jpg", size:'100x100') %></td>
+            <td><strong><%= link_to user.name, user_path(user.id) %></strong></td>
+            <td><strong><%= user.follower.count %></strong> </td>
+            <td><strong class="text-center"><%= user.followed.count %></td></strong>
         </tr>
         <% end %>
     </tbody>

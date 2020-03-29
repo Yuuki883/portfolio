@@ -1,5 +1,5 @@
 <%= form_for(current_user, url: user_relationships_path(@user), method: :delete, remote: true) do |f| %>
-<%= button_tag(class:"btn btn-warning rounded-pill btn-sm") do %>
+<%= button_tag(class:"btn btn-danger rounded-pill btn-sm") do %>
 <%= content_tag :span, "フォロー中", class:"fas fa-user-minus" %>
 <% end %>
 <% end %>

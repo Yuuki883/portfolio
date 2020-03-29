@@ -4,10 +4,11 @@
 </head>
 
 <body>
-    <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-    <% end %>
-
+    <strong class="text-center">
+        <% if flash[:notice] %>
+        <p class="alert alert-danger"><%= flash[:notice] %></p>
+        <% end %>
+    </strong>
     <div class="jumbotron jumbotron-fluid top">
         <div class="container">
             <h1 class="display-12 about-context">Web-Anへようこそ</h1><br>

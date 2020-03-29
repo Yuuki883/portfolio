@@ -1,0 +1,33 @@
+<head>
+    <% set_meta_tags title: "ユーザーが作成した掲示板", description: 'ユーザーが作成した掲示板を一覧で表示しております。' %>
+</head>
+
+<body>
+    <br>
+    <h1 class="text-center">
+        <strong class="fas fa-chalkboard-teacher">
+            <%= current_user.name.to_s+"さんの掲示板"%></strong></h1>
+    <% if @topics.count > 0 %>
+    <table class='table text-center'>
+        <thead>
+            <tr>
+                <th>タイトル</th>
+                <th>コメント数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @topics.each do |topic| %>
+            <tr class="table-primary">
+                <td><strong><%= link_to topic.title, topic_path(topic.id) %><strong></td>
+                <td><%= topic.topic_comments.count %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <% else %>
+    <div class="mx-auto">
+        <h2 class="display-4 text-info">まだ掲示板を作成していません</h2>
+        <%= link_to "掲示板を作成する", new_topic_path, class:"btn btn-primary btn-lg"%>
+        <% end %>
+    </div>
+</body>

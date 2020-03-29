@@ -1,12 +1,22 @@
     <% if messages.present? %>
     <% messages.each do |m| %>
-    <strong>
-        <li><%= link_to m.user.name.to_s+"さん", user_path(m.user_id ) %></li>
-    </strong>
-    <strong><%= m.content %></strong>
-        <%= link_to message_path(m.user.id), method: :delete,data:{confirm:"削除してもよろしいですか？"} do %>
-        <div class="fas fa-trash-alt"></div>
-        <% end %>
+    <div class="balloon6">
+        <div class="faceicon">
+            <%= attachment_image_tag m.user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
+            <strong><%= link_to m.user.name, user_path(m.user_id ) %></strong>
+        </div>
+        <div class="chatting">
+            <div class="says">
+                <strong><%= m.content %></strong>
+            </div>
+            <small><%= m.created_at %></small>
+            <% if current_user.id == m.user_id %>
+            <%= link_to message_path(m.user.id), method: :delete,data:{confirm:"削除してもよろしいですか？"} do %>
+            <div class="fas fa-trash-alt"></div>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
     <% end %>
     <br>
     <% else %>

@@ -13,8 +13,8 @@ class TopicCommentsController < ApplicationController
     end
 
     def destroy
-        @topic_comment = TopicComment.find(params[:topic_id])
-        @topic_comment.destroy
+        topic_comment = TopicComment.find(params[:topic_id])
+        topic_comment.destroy
         redirect_to request.referer, notice: "コメントを削除しました！"
     end
 
