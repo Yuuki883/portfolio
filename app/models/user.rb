@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :topic_comments, dependent: :destroy
+  has_many :maps, dependent: :destroy
+  # has_many :maps, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :favorites, dependent: :destroy

@@ -1,87 +1,61 @@
-<h2>gmap</h2>
-
-<input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="Encode" onclick="onclickEncodeButton()">
-<!-- 下の1行を追加 -->
-<div id="display"></div>
-
-<div id='map'></div>
-
-<style>
-    #map {
-        height: 600px;
-        width: 600px;
-    }
-</style>
-
-<script>
-    let map
-    let geocoder
-    const display = document.getElementById('display')
-
-    function initMap() {
-        geocoder = new google.maps.Geocoder()
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {
-                lat: 35.662,
-                lng: 139.703
-            },
-            zoom: 12,
-        });
-
-        marker = new google.maps.Marker({
-            position: {
-                lat: 40.7828,
-                lng: -73.9653
-            },
-            map: map
-        });
-    }
-
-    function onclickEncodeButton() {
-        codeAddress()
-        searchResult()
-    }
-
-    function searchResult() {
-        const inputAddress = document.getElementById('address').value;
-        const url =
-            `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${inputAddress}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDMGRqUBFI2pMfVWFOiyWcf9zPoVHdd6DE`
-        console.log(url)
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: 'jsonp'
-        }).done(function (data) {
-            console.log(data)
-            // 成功の場合の処理
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            // エラーの場合処理
-        });
-    }
-
-
-    function codeAddress() {
-        let inputAddress = document.getElementById('address').value;
-
-        geocoder.geocode({
-            'address': inputAddress
-        }, function (results, status) {
-            if (status == 'OK') {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-                // 下の1行を追加 
-                display.textContent = "検索結果：" + results[0].geometry.location
-            } else {
-                alert('該当する結果がありませんでした：' + status);
-            }
-        });
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMGRqUBFI2pMfVWFOiyWcf9zPoVHdd6DE&callback=initMap" async
-    defer>
-    < /input>
+<head>
+    <% set_meta_tags title: "map", description: 'このページでは訪れた場所を登録できます' %>
+</head>
+<br>
+<h1 class="text-align: text-center">
+    <storng class="fas fa-map-marked-alt">スポットマップ</strong>
+</h1>
+<br>
+<strong class="text-center">
+    <% if flash[:notice] %>
+    <p class="alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+</strong>
+<div class="container">
+    <div class="row">
+        <div id="map" style="width: 1000px; height: 400px; margin-left: auto; margin-right: auto; "></div>
+        <script>
+            handler = Gmaps.build('Google');
+            handler.buildMap({
+                provider: {},
+                internal: {
+                    id: 'map'
+                }
+            }, function () {
+                markers = handler.addMarkers( <%= raw @hash.to_json %> );
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                handler.getMap().setCenter(new google.maps.LatLng(38.258595, 137.6850225));
+                handler.getMap().setZoom(5);
+            });
+        </script>
+        <div class="col-lg-9 col-md-7 mx-auto text-center">
+            <br>
+            <h2 class="heading"><strong class="fas fa-check-square"></i>スポットマップについて</strong></h2>
+            <p class="heading_txt">スポットマップは下記のフォームから登録して頂いた場所が地図に反映されます。<br>
+                これまで訪れたことのある場所を登録して残しましょう！
+            </p>
+            <%= render 'form', map: @map %>
+            <br>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <th>場所名</th>
+                <th>コメント</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                <% @maps.each do |map| %>
+                <tr class="table-primary">
+                    <td><%= map.name %></td>
+                    <td><%= map.description %></td>
+                    <td><%= link_to '編集', edit_map_path(map) %></td>
+                    <td><%= link_to '削除', map, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

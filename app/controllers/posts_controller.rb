@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!,except: [:top]
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
   def new

@@ -1,0 +1,10 @@
+<div class="mx-auto">
+  <%= form_with(model: map, local: true) do |f| %>
+  <%= f.text_field :name, class:'form-control', :placeholder => "登録したい場所を入力" %>
+  <br>
+  <%= f.text_field :description, class:'form-control', :placeholder => "コメントを入力" %>
+  <div style="text-align: center">
+    <%= f.submit "登録", class:'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
