@@ -1,0 +1,15 @@
+<head>
+    <% set_meta_tags title: "mapの編集", description: 'このページではマップに登録した情報を編集できます' %>
+</head>
+
+<div class="container">
+    <br>
+    <h1 class="text-align: text-center">
+        <strong class="fas fa-edit">スポット編集</strong>
+    </h1>
+    <br>
+    <%= render 'form', map: @map %>
+    <div style="text-align: center">
+        <%= link_to 'スポット一覧', maps_path, class:'btn btn-primary' %>
+    </div>
+</div>
