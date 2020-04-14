@@ -72,7 +72,9 @@ gem 'sitemap_generator'
 gem "gretel"
 gem 'bootstrap', '~> 4.2.1'
 gem "bootswatch", github: "thomaspark/bootswatch"
-gem 'pry-byebug'
+gem "pry-byebug"
+gem "gmaps4rails"
+gem "geocoder"
 
 group :production do
   gem 'mysql2'

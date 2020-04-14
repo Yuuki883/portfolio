@@ -117,8 +117,10 @@ GEM
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
     ffi (1.12.2)
+    geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gmaps4rails (2.1.2)
     gretel (3.0.9)
       rails (>= 3.1.0)
     http-accept (1.7.0)
@@ -319,6 +321,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  geocoder
+  gmaps4rails
   gretel
   jbuilder (~> 2.5)
   jquery-rails
