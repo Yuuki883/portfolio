@@ -75,6 +75,8 @@ gem "bootswatch", github: "thomaspark/bootswatch"
 gem "pry-byebug"
 gem "gmaps4rails"
 gem "geocoder"
+gem "ransack"
+gem "kaminari"
 
 group :production do
   gem 'mysql2'
