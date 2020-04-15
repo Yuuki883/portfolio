@@ -8,8 +8,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
     @users = User.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).per(5)
   end
 
   def show

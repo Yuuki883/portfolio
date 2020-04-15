@@ -8,6 +8,8 @@ class TopicsController < ApplicationController
   def index
     @topic = Topic.new
     @topics = Topic.all
+    @q = Topic.ransack(params[:q])
+    @topics = @q.result(distinct: true).page(params[:page]).per(5)
     @topic_comments = @topic.topic_comments
   end
 
