@@ -3,7 +3,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMGRqUBFI2pMfVWFOiyWcf9zPoVHdd6DE&callback=initMap">
 </script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
+<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js'
+    type='text/javascript'></script>
 
 <head>
     <%= csrf_meta_tags %>
@@ -31,19 +32,23 @@
                 <li class="nav-item active">
                     <%= link_to 'このサイトについて', about_path, class: "nav-link" %>
                 </li>
+                <% if user_signed_in? %>
                 <li class="nav-item active">
                     <%= link_to 'みんなの投稿', posts_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item active">
                     <%= link_to "掲示板", topics_path, class: "nav-link" %>
                 </li>
-                <% if user_signed_in? %>
+                <li class="nav-item active">
+                    <%= link_to "スポットマップ", maps_path(current_user), class: "nav-link" %>
+                <li class="nav-item active">
+                    <%= link_to "ユーザー一覧", users_path, class: "nav-link" %>
+                </li>
                 <li class="nav-item active">
                     <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
                 </li>
                 <li class="nav-item active">
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:
-                            "nav-link" %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 </li>
                 <% else %>
                 <li class="nav-item active">
@@ -66,9 +71,11 @@
                 <ul class="foote_bottom_ul_amrc">
                     <li><%= link_to 'ホーム', root_path %></li>
                     <li><%= link_to 'このサイトについて', about_path %></li>
+                    <% if user_signed_in? %>
                     <li><%= link_to 'みんなの投稿', posts_path %></li>
                     <li><%= link_to "掲示板", topics_path %></li>
-                    <% if user_signed_in? %>
+                    <li><%= link_to "スポットマップ", maps_path(current_user) %></li>
+                    <li><%= link_to "ユーザー一覧", users_path %></li>
                     <li><%= link_to "マイページ", user_path(current_user) %></li>
                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                     <% else %>
