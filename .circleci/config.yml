@@ -47,31 +47,31 @@ workflows:
           cluster-name: 'Rails-Nginx' #ECSのクラスターのARN
           service-name: 'ecs-rails-ervice' #サービス名
           container-image-name-updates: 'container=rails,tag=${CIRCLE_SHA1}'
-  test:
-    jobs:
-      build:
-      # docker-composeがインストール済みの仮想マシンをプル
-      machine:
-        image: circleci/classic:edge
-      steps:
-        - checkout
-        - run:
-            name: database.ymlの再設定
-            command: |
-              rm ./config/database.yml
-              mv ./config/database.ci.yml ./config/database.yml
-        - run:
-            name: Dockerコンテナのビルド
-            command: docker-compose build
-        - run:
-            name: Dockerコンテナの起動
-            command: docker-compose up -d
-        - run:
-            name: データベースのセットアップ
-            command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
-        - run:
-            name: RSpecテスト実行
-            command: docker-compose exec web bundle exec bin/rspec
-        - run:
-            name: Dockerコンテナの停止
-            command: docker-compose down
+  # test:
+  #   jobs:
+  #     build:
+  #     # docker-composeがインストール済みの仮想マシンをプル
+  #     machine:
+  #       image: circleci/classic:edge
+  #     steps:
+  #       - checkout
+  #       - run:
+  #           name: database.ymlの再設定
+  #           command: |
+  #             rm ./config/database.yml
+  #             mv ./config/database.ci.yml ./config/database.yml
+  #       - run:
+  #           name: Dockerコンテナのビルド
+  #           command: docker-compose build
+  #       - run:
+  #           name: Dockerコンテナの起動
+  #           command: docker-compose up -d
+  #       - run:
+  #           name: データベースのセットアップ
+  #           command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
+  #       - run:
+  #           name: RSpecテスト実行
+  #           command: docker-compose exec web bundle exec bin/rspec
+  #       - run:
+  #           name: Dockerコンテナの停止
+  #           command: docker-compose down
