@@ -38,4 +38,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: {maximum: 20, minimum: 1}
   validates :introduction, length: { maximum: 100 }
+  validates :like_age, length: { maximum: 100 }
+  validates :like_busho, length: { maximum: 100 }
 end
