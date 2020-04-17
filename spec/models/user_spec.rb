@@ -6,10 +6,6 @@ RSpec.describe 'Userモデルのテスト', type: :model do
     subject { test_user.valid? }
     context 'nameカラム' do
       let(:test_user) { user }
-      it '空欄でないこと' do
-        test_user.name = ''
-        is_expected.to eq false;
-      end
       it 'nameが存在しないので保存されない' do
         user = User.new(email: 'aaa@aaaa', password: '111111')
         expect(user).not_to be_valid
@@ -58,17 +54,17 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:topics).macro).to eq :has_many
       end
     end
-    context 'Topic_commentsモデルとの関係' do
+    context 'Topic_commentモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:topic_comments).macro).to eq :has_many
       end
     end
-    context 'Messagesモデルとの関係' do
+    context 'Messageモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:messages).macro).to eq :has_many
       end
     end
-    context 'Favoritesモデルとの関係' do
+    context 'Favoriteモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:favorites).macro).to eq :has_many
       end
