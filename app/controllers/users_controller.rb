@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
+  before_action :authenticate_user!
   before_action :baria_user, only: [:edit, :update]
 
   def index
