@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "ユーザー一覧ページ", type: :request do
+RSpec.describe "ユーザーリストページ", type: :request do
   let!(:user) { create(:user) }
 
   context "ログインしていないユーザーの場合" do

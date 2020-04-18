@@ -1,45 +1,95 @@
 <head>
-    <% set_meta_tags title: 'ヒストリアンへようこそ！', description: 'ヒストリアンのトップページです。このサイトでは歴史好きのユーザーの方達がサイト内で交流することを目的としております。
+  <% set_meta_tags title: 'ヒストリアンへようこそ！', description: 'ヒストリアンのトップページです。このサイトでは歴史好きのユーザーの方達がサイト内で交流することを目的としております。
     ぜひご登録してご利用ください！' %>
 </head>
 
 <body>
-    <strong class="text-center">
-        <% if flash[:notice] %>
-        <p class="alert alert-danger"><%= flash[:notice] %></p>
-        <% end %>
-    </strong>
-    <div class="jumbotron jumbotron-fluid top">
-        <div class="container">
-            <h1 class="display-12 about-context">ヒストリアンへようこそ</h1><br>
-            <p>このサイトでは歴史好きのユーザーの方達がサイト内で<br>
-                交流できるように様々な機能をご用意しております。</p>
-            <%= link_to "登録はこちら", new_user_registration_path, class: "btn btn-primary rounded-pill" %>
+  <strong class="text-center">
+    <% if flash[:notice] %>
+    <p class="alert alert-danger"><%= flash[:notice] %></p>
+  </strong>
+  <% end %>
+  <div class="page-header header-filter top" data-parallax="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="title">歴史好きユーザーの為の<br>
+            総合SNS型WEBサービス</h1>
+          <br>
+          <%= link_to "今すぐ始める！", new_user_registration_path, class: "main-btn" %>
         </div>
+      </div>
     </div>
-    <div class="container-fluid">
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
         <div class="row">
-            <div class="col-md-4">
-                <h3>情報のシェア</h3>
-                <p>今まで訪れた各地の歴史にゆかりのある場所の情報を投稿して、他のユーザーにシェアすることができます。気に入った投稿にはいいねをつけたり、
-                    そのユーザーをフォローすることも可能です。
-                </p>
-                <%= link_to "みんなの投稿をみる", posts_path, class: "btn btn-primary rounded-pill" %>
-            </div>
-            <div class="col-md-4">
-                <h3>掲示板</h3>
-                <p>ご自分にとって興味のある話題のスレッドを作成したりスレッドに参加することで、サイト内のユーザーとの交流が可能となっております。
-                </p>
-                <%= link_to "掲示板を見る", topics_path, class: "btn btn-primary rounded-pill" %>
-            </div>
-            <div class="col-md-4">
-                <h3>地図で検索</h3>
-                <p>これまで自分が行ったことのある観光地をを検索して記録することできます。
-                </p>
-                <%= link_to "試しに検索してみよう", maps_path, class: "btn btn-primary rounded-pill" %>
-            </div>
+          <div class="col-md-8 ml-auto mr-auto">
+          <br>
+            <h2 class="title">ヒストリアンとは？</h2>
+            <h5 class="description">様々な機能を通じて歴史好きのユーザー同士が交流できる総合SNS型WEBサービスです！</h5>
+            <%= link_to "ヒストリアンについて詳しく", about_path, class: "main-btn" %>
+          </div>
+          <div class="col-md-8 ml-auto mr-auto">
+            <br>
+            <br>
+            <h2 class="title">ヒストリアンでできること</h2>
+            <h5 class="description">ヒストリアンはサイト内でユーザーが交流できるように以下四つの機能を用意しております。</h5>
+          </div>
         </div>
+
+        <div class="features">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="fas fa-people-arrows"></i>
+                </div>
+                <h4 class="info-title">情報のシェア</h4>
+                <p>今まで訪れた歴史に縁のある場所の情報を投稿して、他のユーザーにシェアすることができます。</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="far fa-comment-dots"></i>
+                </div>
+                <h4 class="info-title">チャット</h4>
+                <p>チャット機能を用意しているので、ユーザーと直に交流できます。</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="info">
+                <div class="icon icon-success">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h4 class="info-title">掲示板</h4>
+                <p>掲示板の作成や興味のある話題の掲示板に参加することで可能です。</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h4 class="info-title">地図上に場所を記録</h4>
+                <p>これまで訪れた場所をスポットマップに記録することが可能で、訪問記録を残すことができます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section section-contacts">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="text-center title">総合SNS型WEBサービス<br>
+            ヒストリアン</h2>
+            <%= link_to "今すぐ始める！", new_user_registration_path, class: "main-btn" %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>

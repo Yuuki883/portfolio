@@ -1,61 +1,68 @@
 <head>
-    <% set_meta_tags title: "map", description: 'このページでは訪れた場所を登録できます' %>
+  <% set_meta_tags title: "map", description: 'このページでは訪れた場所を登録できます' %>
 </head>
 <br>
 <h1 class="text-align: text-center">
-    <storng class="fas fa-map-marked-alt">スポットマップ</strong>
+  <storng class="fas fa-map-marked-alt">スポットマップ</strong>
 </h1>
 <br>
 <strong class="text-center">
-    <% if flash[:notice] %>
-    <p class="alert alert-success"><%= flash[:notice] %></p>
-    <% end %>
+  <% if flash[:notice] %>
+  <p class="alert alert-success"><%= flash[:notice] %></p>
+  <% end %>
 </strong>
 <div class="container">
-    <div class="row">
-        <div id="map" style="width: 1000px; height: 400px; margin-left: auto; margin-right: auto; "></div>
-        <script>
-            handler = Gmaps.build('Google');
-            handler.buildMap({
-                provider: {},
-                internal: {
-                    id: 'map'
-                }
-            }, function () {
-                markers = handler.addMarkers( <%= raw @hash.to_json %> );
-                handler.bounds.extendWith(markers);
-                handler.fitMapToBounds();
-                handler.getMap().setCenter(new google.maps.LatLng(38.258595, 137.6850225));
-                handler.getMap().setZoom(5);
-            });
-        </script>
-        <div class="col-lg-7 col-md-7 mx-auto"">
-            <br>
-            <h2 class=" heading"><strong class="fas fa-check-square"></i>スポットマップについて</strong></h2>
-            <p class="heading_txt">スポットマップは下記のフォームから登録して頂いた場所が地図に反映されます。<br>
-                これまで訪れたことのある場所を登録して残しましょう！
-            </p>
-            <%= render 'form', map: @map %>
-            <br>
-        </div>
-        <table class="table table-hover">
-            <tr>
-                <th>場所</th>
-                <th>コメント</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-                <% @maps.each do |map| %>
-                <tr class="table-primary">
-                    <td><%= map.name %></td>
-                    <td><%= map.description %></td>
-                    <td><%= link_to '編集', edit_map_path(map) %></td>
-                    <td><%= link_to '削除', map, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+  <div class="row text-center">
+    <div id="map" style="width: 1000px; height: 400px; margin-left: auto; margin-right: auto; "></div>
+    <script>
+      handler = Gmaps.build('Google');
+      handler.buildMap({
+        provider: {},
+        internal: {
+          id: 'map'
+        }
+      }, function () {
+        markers = handler.addMarkers( <%= raw @hash.to_json %> );
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setCenter(new google.maps.LatLng(38.258595, 137.6850225));
+        handler.getMap().setZoom(5);
+      });
+    </script>
+    <div class="col-md-6">
+      <div class="form-group">
+      <br>
+        <h2 class=" heading"><strong class="fas fa-check-square"></i>スポットマップについて</strong></h2>
+        <p class="heading_txt">スポットマップはフォームから登録して頂いた場所が地図に反映されます。<br>
+          これまで訪れたことのある場所を登録して残しましょう！
+        </p>
+      </div>
     </div>
+    <div class="col-md-5">
+      <div class="form-group">
+      <br>
+        <%= render 'form', map: @map %>
+      </div>
+    </div>
+  </div>
+  <table class="table table-hover">
+    <tr>
+      <th>場所</th>
+      <th>コメント</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @maps.each do |map| %>
+      <tr class="table-primary">
+        <td><%= map.name %></td>
+        <td><%= map.description %></td>
+        <td><%= link_to '編集', edit_map_path(map) %></td>
+        <td><%= link_to '削除', map, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 </div>
