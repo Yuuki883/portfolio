@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!,except: [:index]
-
+  before_action :correct_user, only: [:edit, :update]
   def new
     @topic = Topic.new
   end
@@ -48,5 +48,11 @@ class TopicsController < ApplicationController
   private
   def topic_params
     params.require(:topic).permit(:title)
+  end
+  def correct_user
+    topic = Topic.find(params[:id])
+    if current_user.id != topic.user.id
+      redirect_to topics_path
+    end
   end
 end

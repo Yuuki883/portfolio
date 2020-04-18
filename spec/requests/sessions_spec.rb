@@ -1,11 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe "ログイン画面", type: :request do
+RSpec.describe "ログイン", type: :request do
+  let!(:user) { create(:user) }
 
-  describe "ログイン画面にアクセスした時" do
-    it 'ログイン画面の表示に成功すること' do
+  describe "ログイン" do
+    it "正常なレスポンスを返すこと" do
       get new_user_session_path
-      expect(response).to have_http_status(200)
+      expect(response).to be_success
+      expect(response).to have_http_status "200"
+    end
+    it "有効なユーザーでログイン" do
+      get new_user_session_path
+      post user_session_path, params: { session: { email: user.email, password: user.password } }
     end
   end
 end

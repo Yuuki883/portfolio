@@ -1,56 +1,56 @@
 <head>
-    <% set_meta_tags title: "ユーザー一覧", description: 'ヒストリアンに登録しているユーザーの一覧です。' %>
+  <% set_meta_tags title: "ユーザー一覧", description: 'ヒストリアンに登録しているユーザーの一覧です。' %>
 </head>
 
 <body>
-    <br>
-    <h1 class="text-center fas fa-users">ユーザー一覧</h1>
-    <br>
-    <div class="col-lg-4 col-md-7 mx-auto">
-        <div class="form-group">
-            <%= search_form_for @q do |f| %>
-            <div class="input-group">
-                <%= f.search_field :name_cont, class:'form-control', :placeholder => "ユーザーを検索" %>
-                <div class="input-group-append">
-                    <%= button_tag(class: "fas fa-search") do %>
-                    <% end %>
-                </div>
-            </div>
-            <% end %>
+  <br>
+  <h1 class="text-center fas fa-users">ユーザー一覧</h1>
+  <br>
+  <div class="col-lg-4 col-md-7 mx-auto">
+    <div class="form-group">
+      <%= search_form_for @q do |f| %>
+      <div class="input-group">
+        <%= f.search_field :name_cont, class:'form-control', :placeholder => "ユーザーを検索" %>
+        <div class="input-group-append">
+          <%= button_tag(class: "fas fa-search") do %>
+          <% end %>
         </div>
+      </div>
+      <% end %>
     </div>
-    <div class="container">
-        <div class="row no-gutters">
-            <% @users.each do |user| %>
-            <div class="col-xs-12 col-md-6 col-lg-3 user-index">
-                <div class="card user-card mt-1 ml-1 mr-1 mb-1">
-                    <%= attachment_image_tag user, :image, :fill, 200, 200, class: "card-img-top user-card-img mx-auto default-img", fallback: "no_image.jpg", size:'240x240' %>
-                    <div class="card-body">
-                        <h2 class="card-title text-center">
-                            <strong><%= link_to user.name, user_path(user) %></strong>
-                        </h2>
-                        <div class="card-text text-center">
-                            <% if user.introduction.present? %>
-                            <%= truncate(user.introduction, length: 15) %>
-                            <% else %>
-                            まだ自己紹介がありません
-                            <% end %>
-                        </div>
-                        <div class="user-status-summary text-center mt-1">
-                            <div class="summary-title">フォロー
-                                <%= user.follower.count %></div>
-                            <div class="summary-title">フォロワー
-                                <%= user.followed.count %></div>
-                        </div>
-                    </div>
-                </div>
+  </div>
+  <div class="container">
+    <div class="row no-gutters">
+      <% @users.each do |user| %>
+      <div class="col-xs-12 col-md-6 col-lg-3 user-index">
+        <div class="card user-card mt-1 ml-1 mr-1 mb-1">
+          <%= attachment_image_tag user, :image, :fill, 200, 200, class: "card-img-top user-card-img mx-auto default-img", fallback: "no_image.jpg", size:'240x240' %>
+          <div class="card-body">
+            <h2 class="card-title text-center">
+              <strong><%= link_to user.name, user_path(user) %></strong>
+            </h2>
+            <div class="card-text text-center">
+              <% if user.introduction.present? %>
+              <%= truncate(user.introduction, length: 15) %>
+              <% else %>
+              まだ自己紹介がありません
+              <% end %>
             </div>
-            <% end %>
-        </div>
-        <div class="row">
-            <div class="mx-auto">
-                <%= paginate @users %>
+            <div class="user-status-summary text-center mt-1">
+              <div class="summary-title">フォロー
+                <%= user.follower.count %></div>
+              <div class="summary-title">フォロワー
+                <%= user.followed.count %></div>
             </div>
+          </div>
         </div>
+      </div>
+      <% end %>
     </div>
+    <div class="row">
+      <div class="mx-auto">
+        <%= paginate @users %>
+      </div>
+    </div>
+  </div>
 </body>

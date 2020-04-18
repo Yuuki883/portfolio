@@ -6,7 +6,11 @@ RUN apt-get update -qq && \
   libpq-dev \
   nodejs \
   vim \
-  default-mysql-client 
+  default-mysql-client
+
+RUN curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN curl -O https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip
 
 WORKDIR /app
 
