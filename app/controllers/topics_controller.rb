@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @topics = Topic.all
     @q = Topic.ransack(params[:q])
-    @topics = @q.result(distinct: true).page(params[:page]).per(5)
+    @topics = @q.result(distinct: true).page(params[:page]).per(10)
     @topic_comments = @topic.topic_comments
   end
 
