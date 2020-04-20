@@ -17,18 +17,18 @@
               <%= f.label :メールアドレス %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Eメール" %>
             </div>
-
             <div class="form-group">
               <i class="fas fa-lock"></i>
               <%= f.label :パスワード %><br />
               <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワード" %>
             </div>
-
             <% if devise_mapping.rememberable? %>
             <%= f.check_box :remember_me %>
             <%= f.label :ログイン状態を維持する %>
             <% end %>
-
+            <p>採用担当者様 専用アカウント</p>
+            <p>メールアドレス: recruit@example.com</p>
+            <p>パスワード: password</p>
             <div class="actions">
               <%= f.submit "ログイン", class:"btn btn-primary" %>
             </div>
