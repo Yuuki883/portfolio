@@ -65,7 +65,7 @@
   </nav>
 </header>
 
-<body class="bg-light">
+<body style="background-color:ghostwhite">
   <div id="wrapper">
     <%= yield %>
     <footer class="footer bg-primary mt-auto">
@@ -77,7 +77,7 @@
           <li><%= link_to 'みんなの投稿', posts_path %></li>
           <li><%= link_to "掲示板", topics_path %></li>
           <li><%= link_to "スポットマップ", maps_path(current_user) %></li>
-          <li><%= link_to "ユーザー一覧", users_path %></li>
+          <li><%= link_to "ユーザーリスト", users_path %></li>
           <li><%= link_to "マイページ", user_path(current_user) %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <% else %>
@@ -85,26 +85,26 @@
           <li><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
         </ul>
-        <p class="text-center">Copyright @2020 | Designed With by Web-An
+        <p class="text-center">Copyright @2020 | Designed With by ヒストリアン
         </p>
         <ul class="social_footer_ul">
           <li>
-            <a href="http://webenlance.com">
+            <a href="">
               <i class="fab fa-facebook-f"></i>
             </a>
           </li>
           <li>
-            <a href="http://webenlance.com">
+            <a href="">
               <i class="fab fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a href="http://webenlance.com">
+            <a href="">
               <i class="fab fa-linkedin"></i>
             </a>
           </li>
           <li>
-            <a href="http://webenlance.com">
+            <a href="">
               <i class="fab fa-instagram"></i>
             </a>
           </li>

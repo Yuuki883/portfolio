@@ -1,83 +1,133 @@
-<div class="card mx-auto text-center">
-  <div class="card-body">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <br>
-        <%= attachment_image_tag user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'240x240' %>
-        <div class="d-flex justify-content-start">
-          <br>
-          <%= render "follow_form" %>
-          <% if @user.id == current_user.id %>
-          <% else %>
-          <br>
+<div class="user-header">
+  <div class="user-status row no-gutters">
+    <div class="col-xs-12 col-md-2 text-center">
+      <div class="user-img-area pt-3">
+        <%= attachment_image_tag user, :image, :fill, 200, 200, class: "rounded-circle", fallback: "no_image.jpg", size:'180x180' %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3 text-center">
+      <div class="user-name">
+        <%= user.name%>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-2 text-center">
+      <div class="follow-chat-btn">
+        <%= render "follow_form" %>
+        <div class="header-follow-text">
+          <% if @user.id != current_user.id %>
           <%= render 'rooms/room', room: @room, roomId: @roomId, isRoom: @isRoom, entry: @entry, user: @user %>
           <% end %>
         </div>
-        <br>
       </div>
-      <div class="col-md-8">
-        <br>
-        <h2 class="card-text fas fa-user-tie">
-          <%= user.name%>さん</h2>
-        <br>
-        <div class="count">
+    </div>
+    <div class="col-xs-12 col-md-5 text-center">
+      <div class="follow-group">
+        <div class="header-follow-text mr-5">
           <strong>フォロー</strong>
-          <%= link_to user.follower.count, user_followers_path(user) %>
-          |
-          <strong>フォロワー</strong>
-          <%= link_to user.followed.count, user_follows_path(user) %>
+          <%= link_to user.follower.count, user_followers_path(user), style:"color:white" %>
         </div>
-        <br>
-        <h3 class="card-text fas fa-clipboard-list">自己紹介</h3>
-        <p><%= user.introduction %></p>
-        <h3 class="card-text fas fa-clipboard-list">好きな時代</h3>
-        <p><%= user.like_age %></p>
-        <h3 class="card-text fas fa-clipboard-list">好きな武将</h3>
-        <p><%= user.like_busho %></p>
+        <div class="header-follow-text">
+          <strong>フォロワー</strong>
+          <%= link_to user.followed.count, user_follows_path(user), style:"color:white" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-xs-12 col-md-5 mt-4 text-center">
+      <div class="text-center mb-3 profile-title">プロフィール</div>
+      <div class="user-info mt-3 ml-3">
+        <div class="user-introduce mt-3 ml-3 mr-3">
+          <div class="introduce">
+            <div class="user-introduce">
+              <%= user.introduction %>
+            </div>
+          </div>
+          <div class="area user-age">
+            <%= user.like_age %>
+          </div>
+          <div class="area user-busho">
+            <%= user.like_busho %>
+          </div>
+        </div>
+        <% if @user.id == current_user.id %>
+        <div class="setting">
+          <%= link_to "プロフィールの編集" , edit_user_path, class:"fas fa-cog"%>
+          <%= link_to "アカウント設定", edit_user_registration_path, class:"fas fa-cog"%>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-5 mt-4 mx-auto text-center">
+      <div class="row text-center">
+        <div class="user-map-title mx-auto text-center map-title">
+          <%= user.name.to_s+"さんのスポットマップ" %></div>
+        <div class="spot-map mt-3" id="map"
+          style="width: 1000px; height: 400px; margin-left: auto; margin-right: auto;"></div>
+        <script>
+          handler = Gmaps.build('Google');
+          handler.buildMap({
+            provider: {},
+            internal: {
+              id: 'map'
+            }
+          }, function () {
+            markers = handler.addMarkers( <%= raw @hash.to_json %> );
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            handler.getMap().setCenter(new google.maps.LatLng(38.258595, 137.6850225));
+            handler.getMap().setZoom(5);
+          });
+        </script>
       </div>
     </div>
   </div>
 </div>
 <br>
-<div class="card">
-  <div class="card-header bg-light">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active">
-          <%= user.name.to_s+"さんの投稿" %></a>
-      </li>
-      <% if @user == current_user %>
-      <li class="nav-item">
-        <%= link_to "作成した掲示板", user_topics_path(@user.id), class:"nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "チャット一覧", rooms_path, class:"nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "プロフィールの編集" , edit_user_path, class:"nav-link" %>
-      </li>
-      <% else %>
-      <% end %>
-    </ul>
+<div class="col-md-8 mx-auto">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active">
+            <%= @user.name.to_s+"さんの投稿" %></a>
+        </li>
+        <% if @user == current_user %>
+        <li class="nav-item">
+          <%= link_to "作成した掲示板", user_topics_path(@user.id), class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "チャット一覧", rooms_path, class:"nav-link" %>
+        </li>
+        <% else %>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-<% @posts.each do |post| %>
-<div class="card">
-  <div class="card-body">
-    <div class="card-title">
+  <% @posts.each do |post| %>
+  <div class="card">
+    <div class="card-body">
+      <small class="float-right"><%= post.created_at.to_s(:datetime_jp)  %></small>
       <h4 class="card-title"><strong><%= post.place_name %></strong></h4>
+      <h5 class="card-subtitle"><strong><%= post.title %><strong></h5>
+      <p class="card-text"><%= post.content %></p>
+      <div class="img-rounded pull-left profile-thum">
+        <% post.post_images.each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+        <% end %>
+      </div>
+      <div id="favorites_buttons_<%= post.id %>">
+        <%= render 'posts/favorite', post: post %>
+      </div>
+      <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
     </div>
-    <h5 class="card-title"><strong><%= post.title %><strong></h5>
-    <p class="card-text"><%= post.content %></p>
-    <div class="img-rounded pull-left profile-thum">
-      <% post.post_images.each do |image| %>
-      <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
-      <% end %>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @posts %>
     </div>
-    <div id="favorites_buttons_<%= post.id %>">
-      <%= render 'posts/favorite', post: post %>
-    </div>
-    <%= link_to "詳細", post_path(post), class:"fas fa-search-plus" %>
   </div>
 </div>
-<% end %>

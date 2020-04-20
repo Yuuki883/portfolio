@@ -1,33 +1,30 @@
 <head>
-    <% set_meta_tags title: "チャット画面", description: 'ユーザーとのチャットを表示しております。' %>
+  <% set_meta_tags title: "チャット画面", description: 'ユーザーとのチャットを表示しております。' %>
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="text-center">
-            <strong class="fas fa-comment-dots">チャット</strong>
-        </h1>
-        <%= render 'messages/message', messages: @messages %>
-        <div class="chat_form">
-            <%= form_for @message do |f| %>
-            <div class="input-group mb-3">
-                <%= f.text_field :content, class:'form-control', label:"Amount (to the nearest dollar)", :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-                <%= f.hidden_field :room_id, :value => @room.id %>
-                <div class="input-group-append">
-                    <%= button_tag(class: "far fa-paper-plane") do %>
-                    <% end %>
-                </div>
-            </div>
-            <% end %>
+  <div class="container">
+    <%= render 'messages/message', messages: @messages %>
+    <div class="chat_form">
+      <%= form_for @message do |f| %>
+      <div class="input-group mb-3">
+        <%= f.text_field :content, class:'form-control', label:"Amount (to the nearest dollar)", :placeholder => "メッセージを入力して下さい" , :size => 70 %>
+        <%= f.hidden_field :room_id, :value => @room.id %>
+        <div class="input-group-append">
+          <%= button_tag(class: "far fa-paper-plane") do %>
+          <% end %>
         </div>
-        <div>
-            <strong>参加者:</strong>
-            <% @entries.each do |e| %>
-            <strong>
-                <%= link_to e.user.name, user_path(e.user_id ) %>|
-            </strong>
-            <% end %>
-        </div>
-        <%= link_to "チャット一覧", rooms_path, class:"btn btn-primary" %>
+      </div>
+      <% end %>
     </div>
+    <div>
+      <strong>参加者:</strong>
+      <% @entries.each do |e| %>
+      <strong>
+        <%= link_to e.user.name, user_path(e.user_id ) %>|
+      </strong>
+      <% end %>
+    </div>
+    <%= link_to "チャット一覧", rooms_path, class:"btn btn-primary" %>
+  </div>
 </body>

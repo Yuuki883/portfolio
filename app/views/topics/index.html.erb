@@ -1,54 +1,54 @@
 <head>
-    <% set_meta_tags title: "掲示板", description: 'このページでは現在稼働中の掲示板を一覧で表示しております。ご自分にとって興味のあるトピックを扱っている掲示板に是非ご参加ください。' %>
+  <% set_meta_tags title: "掲示板", description: 'このページでは現在稼働中の掲示板を一覧で表示しております。ご自分にとって興味のあるトピックを扱っている掲示板に是非ご参加ください。' %>
 </head>
 
 <body>
-    <div class="text-center">
-        <br>
-        <h1 class="fas fa-chalkboard-teacher">掲示板</h1>
-        <div class="col-lg-4 col-md-7 mx-auto">
-            <h2>
-                <%= link_to "掲示板を作成する", new_topic_path, class:"far fa-plus-square"%>
-            </h2>
-            <br>
-            <div class="form-group">
-                <%= search_form_for @q do |f| %>
-                <div class="input-group">
-                    <%= f.search_field :title_cont, class:'form-control', :placeholder => "タイトルを検索" %>
-                    <div class="input-group-append">
-                        <%= button_tag(class: "fas fa-search") do %>
-                        <% end %>
-                    </div>
-                </div>
-                <% end %>
-            </div>
+  <div class="text-center">
+    <br>
+    <h1 class="fas fa-chalkboard-teacher">掲示板</h1>
+    <div class="col-lg-4 col-md-7 mx-auto">
+      <h2>
+        <%= link_to "掲示板を作成する", new_topic_path, class:"far fa-plus-square"%>
+      </h2>
+      <br>
+      <div class="form-group">
+        <%= search_form_for @q do |f| %>
+        <div class="input-group">
+          <%= f.search_field :title_cont, class:'form-control', :placeholder => "タイトルを検索" %>
+          <div class="input-group-append">
+            <%= button_tag(class: "fas fa-search") do %>
+            <% end %>
+          </div>
         </div>
-        <% if flash[:notice] %>
-        <p class="alert alert-danger"><%= flash[:notice] %></p>
         <% end %>
-        <br>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>タイトル</th>
-                    <th>コメント数</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @topics.each do |topic| %>
-                <tr class="table-primary">
-                    <td>
-                        <strong><%= link_to topic.title, topic_path(topic.id) %></strong>
-                    </td>
-                    <td><%= topic.topic_comments.count %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="mx-auto">
-                <%= paginate @topics %>
-            </div>
-        </div>
+      </div>
     </div>
+    <% if flash[:notice] %>
+    <p class="alert alert-danger"><%= flash[:notice] %></p>
+    <% end %>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>コメント数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @topics.each do |topic| %>
+        <tr class="table-primary">
+          <td>
+            <strong><%= link_to topic.title, topic_path(topic.id) %></strong>
+          </td>
+          <td><%= topic.topic_comments.count %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="mx-auto">
+        <%= paginate @topics %>
+      </div>
+    </div>
+  </div>
 </body>
