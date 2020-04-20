@@ -1,43 +1,45 @@
 <head>
-    <% set_meta_tags title: "チャット一覧", description: 'ユーザーとのチャットの一覧を表示しております。' %>
+  <% set_meta_tags title: "チャット一覧", description: 'ユーザーとのチャットの一覧を表示しております。' %>
 </head>
 
 <body>
-    <div class="container">
-        <br>
-        <h1 class=" text-center">
-            <strong class="fas fa-comments">チャット一覧</strong></h1>
-        <br>
-        <table class='table text-center'>
-            <thead>
-                <tr>
-                    <th>プロフィール画像</th>
-                    <th>ユーザー</th>
-                    <th>新着メッセージ</th>
-                </tr>
-            </thead>
-            <% @anotherEntries.each do |e| %>
-            <tbody>
-                <tr class="table-secondary">
-                    <td> <%= attachment_image_tag e.user, :image, :fill, 100, 100, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
-                    </td>
-                    <td>
-                        <strong class="text-center">
-                            <%= link_to e.user.name, user_path(e.user.id) %>
-                        </strong>
-                    </td>
-                    <td>
-                        <strong>
-                            <%= e.room.messages.order(created_at: :desc).take.try(:content) %><br>
-                        </strong>
-                        <%= link_to room_path(e.room.id) do %>
-                        <div class="btn btn-primary btn-sm">チャットルームへ</div>
-                        <% end %>
-                    </td>
-                </tr>
-            </tbody>
-            <% end %>
-        </table>
+  <br>
+  <h1 class="text-center fas fa-comments">チャット一覧</h1>
+  <br>
+  <table class='table text-center'>
+    <thead>
+      <tr>
+        <th>プロフィール画像</th>
+        <th>ユーザー</th>
+        <th>新着メッセージ</th>
+      </tr>
+    </thead>
+    <% @anotherEntries.each do |e| %>
+    <tbody>
+      <tr class="table-secondary">
+        <td>
+          <%= attachment_image_tag e.user, :image, :fill, 100, 100, class: "rounded-circle", fallback: "no_image.jpg", size:'100x100' %>
+        </td>
+        <td>
+          <strong class="text-center">
+            <%= link_to e.user.name, user_path(e.user.id) %>
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <%= e.room.messages.order(created_at: :desc).take.try(:content) %><br>
+          </strong>
+          <%= link_to room_path(e.room.id) do %>
+          <div class="btn btn-primary btn-sm">チャットルームへ</div>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @anotherEntries %>
     </div>
-    </div>
+  </div>
 </body>
