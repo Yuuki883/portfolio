@@ -5,8 +5,8 @@
 ・**AWS EC2/RDS**を用いたRails本番環境構築  
 ・**Docker**を用いたRails開発環境構築  
 ・**CircleCIによる自動ビルド&デプロイ**（AWS ECS/ECR × CircleCI)  
-・**API**の使用（GooglemapAPI  
-・**Ajax**を用いた非同期処理（いいね  
+・**API**の使用（GooglemapAPI)  
+・**Ajax**を用いた非同期処理（いいね)  
 ・**Bootstrap**によるレスポンシブ対応  
 ・**RSpec**でテスト記述  
 ・**11つのモデル**をそれぞれ関連付けて使用  
