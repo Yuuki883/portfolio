@@ -2,7 +2,7 @@
 歴史好きのユーザー同士が交流できる、総合SNS型WEBサービス。
 
 技術的ポイント
-・*AWS EC2/RDS*を用いたRails本番環境構築
+・*AWS EC2/RDSを用いたRails本番環境構築
 ・Dockerを用いたRails開発環境構築
 ・CircleCIによる自動ビルド&デプロイ（AWS ECS/ECR × CircleC）
 ・APIの使用（GooglemapAPI）
