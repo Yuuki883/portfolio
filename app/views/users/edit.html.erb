@@ -1,56 +1,55 @@
 <html>
 
 <head>
-    <% set_meta_tags title: "プロフィール編集", description: "に登録しているユーザーのプロフィールを編集することができます。"%>
+  <% set_meta_tags title: "プロフィール編集", description: "に登録しているユーザーのプロフィールを編集することができます。"%>
 </head>
 
 <body>
-    <strong class="text-center">
-        <% if flash[:notice] %>
-        <p class="alert alert-success"><%= flash[:notice] %></p>
-        <% end %>
-    </strong>
+  <strong class="text-center">
+    <% if flash[:notice] %>
+    <p class="alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+  </strong>
+  <br>
+  <div class="container-fluid col-md7">
+    <h1 class="text-align: text-center">
+      <strong class="fas fa-user-edit">プロフィール編集</strong></h1>
     <br>
-    <div class="container-fluid col-md7">
-        <h1 class="text-align: text-center">
-            <strong class="fas fa-user-edit">プロフィール編集</strong></h1>
-        <br>
-        <%= form_with model:@user do |f| %>
-        <div class="row no-gutters">
-            <div class="card bg-light mx-auto">
-                <div class="card-body">
-                    <table class="table md-0 table-responsive text-nowrap">
-                        <th>プロフィール画像</th>
-                        <td>
-                            <%= attachment_image_tag @user, :image, :fill, 200, 200, class: "img-rounded
-                                        pull-left profile-thumb", fallback: "no_image.jpg", size:'200x200'%><br>
-                            <%= f.attachment_field :image %>
-                        </td>
-                        <tr>
-                            <th>ユーザー名</th>
-                            <td><%= f.text_field :name %></td>
-                        </tr>
-                        <tr>
-                            <th>自己紹介</th>
-                            <td><%= f.text_area :introduction, size: "40x10" %></td>
-                        </tr>
-                        <tr>
-                            <th>好きな時代</th>
-                            <td><%= f.text_field :like_age %></td>
-                        </tr>
-                        <tr>
-                            <th>好きな武将</th>
-                            <td><%= f.text_field :like_busho %></td>
-                        </tr>
-                    </table>
-                    <div class="text-center">
-                        <%= f.submit '変更を保存する', class:"btn btn-primary btn-lg" %>
-                    </div>
-                </div>
-            </div>
-            <% end %>
+    <%= form_with model:@user do |f| %>
+    <div class="row no-gutters">
+      <div class="card bg-light mx-auto">
+        <div class="card-body">
+          <table class="table md-0 table-responsive text-nowrap">
+            <th>プロフィール画像</th>
+            <td>
+              <%= attachment_image_tag @user, :image, :fill, 200, 200, class: "rounded-circle", fallback: "no_image.jpg", size:'200x200'%><br>
+              <%= f.attachment_field :image %>
+            </td>
+            <tr>
+              <th>ユーザー名</th>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <th>自己紹介</th>
+              <td><%= f.text_area :introduction, size: "40x10" %></td>
+            </tr>
+            <tr>
+              <th>好きな時代</th>
+              <td><%= f.text_field :like_age %></td>
+            </tr>
+            <tr>
+              <th>好きな武将</th>
+              <td><%= f.text_field :like_busho %></td>
+            </tr>
+          </table>
+          <div class="text-center">
+            <%= f.submit '変更を保存する', class:"btn btn-primary btn-lg" %>
+          </div>
         </div>
+      </div>
+      <% end %>
     </div>
+  </div>
 </body>
 
 </html>
