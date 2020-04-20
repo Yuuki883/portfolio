@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: ghostwhite;
 }
 
 .footer {
@@ -140,27 +139,57 @@ footer p {
   text-align: center;
 }
 
-@media only screen and (min-width: 1500px) {
+@media screen and (min-width: 1000px) {
 
-  .top,
-  .about {
-    width: 100%;
+  .user-header .user-status .follow-group {
+    margin-top: 12%;
+    margin-bottom: 5%;
+  }
+
+  .user-header .user-status {
+    margin-right: 15%;
+  }
+
+  .user-header .user-status .user-name {
+    margin-top: 75px;
+  }
+
+  .follow-chat-btn {
+    margin-top: 90px;
+  }
+
+  .user-tab-title {
+    font-size: 1.2rem;
+    position: relative;
+    padding: 1% 4%;
+    background: #00CCCC;
+    color: white;
+    font-weight: bold;
+    width: 31%;
+    z-index: -1;
+    text-align: center;
+  }
+
+  .user-tab-title:before {
+    position: absolute;
+    content: '';
+    left: -2px;
+    top: -2px;
+    border: none;
+    border-left: solid 40px #EEFFFF;
+    border-bottom: solid 79px transparent;
+    z-index: -2;
   }
 }
 
-@media only screen and (min-width : 768px) and (max-width : 1200px) {
-
-  .top,
-  .about {
-    width: 100%;
-  }
-
+.card-title,
+.card-text {
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+  border-bottom: 1px dotted #b8b8b8;
 }
 
-@media only screen and (max-width: 479px) {
-
-  .top,
-  .about {
-    width: 100%;
-  }
+.card-subtitle {
+  padding-bottom: 8px;
 }

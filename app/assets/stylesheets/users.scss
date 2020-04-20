@@ -1,7 +1,151 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.justify-content-start{
-    margin-top: 5%;
-    margin-left: 20%;
+
+.user-header .user-status {
+  width: 100%;
+  height: auto;
+  background-color: #e83929
+}
+
+.user-header .user-status .user-img-area .user-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.user-header .user-status .user-name {
+  font-weight: bold;
+  font-size: 2.0rem;
+  color: #fff;
+}
+
+.user-header .user-status .user-name,
+.user-header .user-status .user-image-area,
+.user-header .user-status .user-introduce {
+  display: inline-block;
+}
+
+.user-header .user-status .follow_form,
+.user-header .user-status .chat_form {
+  color: #fff;
+  opacity: 0.8;
+  cursor: default;
+  display: inline-block;
+  margin-bottom: 1%;
+}
+
+.user-header .user-status .follow-group .header-follow-text {
+  font-size: 1.5rem;
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+}
+
+.follow-chat-btn {
+  font-weight: bold;
+  display: inline-flex
+}
+
+.profile-title,
+.map-title,
+.data-title {
+  color: #e83929;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.user-info {
+  border: 2px solid #e83929;
+  border-radius: 15px;
+  padding: 0.3em 0.5em;
+  background: #fff;
+}
+
+.user-info .introduce {
+  position: relative;
+  border: solid 2px #e83929;
+  color: #e83929;
+  line-height: 1.4;
+  padding: 0.4em 0.5em;
+  margin: 2em 0 0.5em;
+  font-weight: bold;
+}
+
+.user-info .introduce:after {
+  position: absolute;
+  content: '自己紹介';
+  background: #e83929;
+  color: #fff;
+  left: 0px;
+  bottom: 100%;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 7px 3px;
+  font-size: 0.7em;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.user-info .area {
+  position: relative;
+  border: solid 2px #e83929;
+  color: #e83929;
+  line-height: 1.4;
+  padding: 0.4em 0.5em;
+  margin: 2em 0 0.5em;
+  font-weight: bold;
+}
+
+.user-info .area:after {
+  position: absolute;
+  content: '好きな時代';
+  background: #e83929;
+  color: #e83929;
+  left: 0px;
+  bottom: 100%;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 7px 3px;
+  font-size: 0.7em;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.user-info .area:after {
+  position: absolute;
+  content: '好きな武将';
+  background: #e83929;
+  color: #fff;
+  left: 0px;
+  bottom: 100%;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 7px 3px;
+  font-size: 0.7em;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.user-tab-list div {
+  display: inline-block;
+}
+
+
+.active {
+  opacity: 1.0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
 }

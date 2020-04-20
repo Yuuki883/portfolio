@@ -10,7 +10,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(5)
+    @maps = Map.all.where(user_id: @user.id)
+    @hash = Gmaps4rails.build_markers(@maps) do |map, marker|
+      marker.lat map.latitude
+      marker.lng map.longitude
+      marker.infowindow map.name
+    end
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     if @user.id == current_user.id
@@ -44,6 +50,12 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user.id), notice: "プロフィールを更新しました！"
     else
       render "edit"
+    end
+    if params[:delete_image]
+      #削除ボタンが押されたらnil
+      @user.image = nil
+      @user.save!
+      redirect_to user_path(@user), notice: "プロフィール画像を削除しました!"
     end
   end
 
