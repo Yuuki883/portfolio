@@ -1,24 +1,35 @@
-# README
+アプリケーションの概要
+歴史好きのユーザー同士が交流できる、総合SNS型WEBサービス。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+技術的ポイント
+・*AWS EC2/RDS*を用いたRails本番環境構築
+・Dockerを用いたRails開発環境構築
+・CircleCIによる自動ビルド&デプロイ（AWS ECS/ECR × CircleC）
+・APIの使用（GooglemapAPI）
+・RSpecでテスト記述
+・Ajaxを用いた非同期処理（いいね）
+・Bootstrapによるレスポンシブ対応
+・11つのモデルをそれぞれ関連付けて使用
 
-Things you may want to cover:
+アプリケーションの機能
+・訪れた場所の情報を投稿
+・投稿に対して「いいね」リクエストを送信
+・掲示板の作成（5chやまとめサイトの様なスレッド機能）
+・スポットマップ（GooglemapAPIを利用して訪れた場所を地図上に記録）
+・チャット機能
+・フォロー機能
+・検索（Ransackを使用）
+・ログイン
+・ログイン状態の保持
+・ページネーション (kaminariを使用)
+・モデルに対するバリデーション
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+環境
+■フレームワーク
+　Ruby on Rails
+■インフラ
+　AWS EC2, Docker
+■データベース
+　AWS RDS, mysql
+■Webサーバー
+　Nginx
