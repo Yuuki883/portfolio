@@ -3,14 +3,13 @@ class UsersController < ApplicationController
   before_action :baria_user, only: [:edit, :update]
 
   def index
-    @users = User.all
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(12)
+    @users = @q.result(distinct: true).page(params[:page]).per(12).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(5)
+    @posts = @user.posts.page(params[:page]).per(10).order(created_at: :desc)
     @maps = Map.all.where(user_id: @user.id)
     @hash = Gmaps4rails.build_markers(@maps) do |map, marker|
       marker.lat map.latitude
@@ -59,14 +58,18 @@ class UsersController < ApplicationController
     end
   end
 
-  def follows
+  def following
+    user = User.find(params[:user_id])
+    @users = user.following_user
   end
 
   def followers
+    user = User.find(params[:user_id])
+    @users = user.follower_user
   end
 
   def topics
-    @topics = Topic.all.where(user_id: current_user.id)
+    @topics = Topic.all.where(user_id: current_user.id).page(params[:page]).per(10).order(created_at: :desc)
   end
 
   private
