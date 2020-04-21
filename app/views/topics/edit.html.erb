@@ -1,25 +1,24 @@
 <head>
-    <% set_meta_tags title: "掲示板の編集", description: 'このページでは掲示板の内容を編集できます。' %>
+  <% set_meta_tags title: "掲示板の編集", description: 'このページでは掲示板の内容を編集できます。' %>
 </head>
 
 <body>
-    <div class="container">
-        <br>
-        <h1 class="text-align: text-center">
-            <strong class="fas fa-edit">掲示板編集</strong></h1>
-        <div class="mx-auto">
-            <% if flash[:notice] %>
-            <p class="alert alert-success"><%= flash[:notice] %></p>
-            <% end %>
-            <%= form_with model:@topic do |f| %>
-            <form>
-                <h2 class="strong"><%= f.label :タイトル, class:"fas fa-clipboard-list"%></h2>
-                <%= f.text_field :title,class:'form-control'%>
-                <%= f.submit "更新", class:'btn btn-primary btn-lg' %>
-                <%= link_to "削除", topic_path(@topic.id), class:"btn btn-primary btn-lg", method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
-                <%= link_to "掲示板へ", topic_path(@topic.id), class:"btn btn-primary btn-lg" %>
-            </form>
-            <% end %>
-        </div>
-    </div>
+  <br>
+  <h1 class="text-align: text-center">
+    <strong class="fas fa-edit">掲示板編集</strong></h1>
+  <% if flash[:notice] %>
+  <strong class="text-center alert alert-success"><%= flash[:notice] %></strong>
+  <% end %>
+  <div class="container">
+    <br>
+    <%= form_with model:@topic do |f| %>
+    <form>
+      <h2 class="strong"><%= f.label :タイトル, class:"fas fa-clipboard-list"%></h2>
+      <%= f.text_field :title,class:'form-control'%>
+      <%= f.submit "更新", class:'btn btn-primary btn-lg' %>
+      <%= link_to "削除", topic_path(@topic.id), class:"btn btn-primary btn-lg", method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      <%= link_to "掲示板へ", topic_path(@topic.id), class:"btn btn-primary btn-lg" %>
+    </form>
+    <% end %>
+  </div>
 </body>
