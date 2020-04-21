@@ -5,7 +5,7 @@ class MapsController < ApplicationController
 
   def index
     @map = Map.new
-    @maps = Map.all.where(user_id: current_user.id)
+    @maps = Map.all.where(user_id: current_user.id).order(created_at: :desc)
     @hash = Gmaps4rails.build_markers(@maps) do |map, marker|
       marker.lat map.latitude
       marker.lng map.longitude
