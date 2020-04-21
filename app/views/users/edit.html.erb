@@ -11,11 +11,12 @@
     <% end %>
   </strong>
   <br>
-  <div class="container-fluid col-md7">
+  <div class="col-md7">
     <h1 class="text-align: text-center">
       <strong class="fas fa-user-edit">プロフィール編集</strong></h1>
     <br>
-    <%= form_with model:@user do |f| %>
+    <%= form_with model:@user, local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row no-gutters">
       <div class="card bg-light mx-auto">
         <div class="card-body">
@@ -31,7 +32,7 @@
             </tr>
             <tr>
               <th>自己紹介</th>
-              <td><%= f.text_area :introduction, size: "40x10" %></td>
+              <td><%= f.text_area :introduction, size: "50x5" %></td>
             </tr>
             <tr>
               <th>好きな時代</th>

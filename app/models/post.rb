@@ -8,4 +8,5 @@ class Post < ApplicationRecord
     validates   :title, presence: true, length: {maximum: 20, minimum: 1}
     validates   :content, presence: true, length: {maximum: 200, minimum: 1}
     validates   :user_id, presence: true
+    validates   :post_images, length: {maximum:5}
 end

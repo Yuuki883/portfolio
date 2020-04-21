@@ -50,12 +50,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
-    if params[:delete_image]
-      #削除ボタンが押されたらnil
-      @user.image = nil
-      @user.save!
-      redirect_to user_path(@user), notice: "プロフィール画像を削除しました!"
-    end
   end
 
   def following

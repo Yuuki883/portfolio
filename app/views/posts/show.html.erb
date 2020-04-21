@@ -4,12 +4,13 @@
   <% if flash[:notice] %>
   <strong class="alert alert-success text-center"><%= flash[:notice] %></strong>
   <% end %>
+
   <div class="container" style="max-width: 800px;">
     <div class="row mx-auto">
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 ">
         <div class="post_user mx-auto text-center">
           <h2>
-            <%= attachment_image_tag @post.user, :image, :fill, 200, 200, class: "img-rounded pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
+            <%= attachment_image_tag @post.user, :image, :fill, 200, 200, class: "rounded-circle", fallback: "no_image.jpg", size:'100x100' %>
           </h2>
           <h3><strong><%= link_to @post.user.name, user_path(@post.user)%></strong></h3>
         </div>
@@ -23,10 +24,10 @@
           <h5 class="card-subtitle">
             <strong><%= @post.title %></strong>
           </h5>
-          <p class="card-text"><%= @post.content %></p>
+          <p class="card-text"><%= safe_join(@post.content.split("\n"), tag(:br)) %></p>
           <div class="img-rounded pull-left profile-thum">
             <% @post.post_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+            <%= attachment_image_tag image, :image, :fill, 140, 140, fallback: "no_image.jpg" %>
             <% end %>
           </div>
           <div id="favorites_buttons_<%= @post.id %>">

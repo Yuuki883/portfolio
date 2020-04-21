@@ -4,22 +4,24 @@
   <div class="container">
     <div class="row">
       <div class='mx-auto'>
-        <% @topic_comments.each do |f| %>
         <div class="card" style="width: 700px">
+          <% @topic_comments.each do |f| %>
           <div class="card-body">
             <div class="card-title">
               <strong><%= f.name %></strong>
               <small><%= f.created_at.to_s(:datetime_jp) %></small>
             </div>
             <div class="card-text">
-              <%= f.body %>
+              <%= safe_join(f.body.split("\n"), tag(:br)) %>
             </div>
             <% if current_user.id == f.user_id %>
             <%= link_to "削除", topic_topic_comments_path(f.id), class:"fas fa-trash-alt", method: :delete, data: { confirm: "削除してよろしいですか？"} %>
             <% end %>
           </div>
+          <% end %>
         </div>
-        <% end %>
+      </div>
+      <div class="mx-auto">
         <div class="card" style="width: 700px">
           <%= form_with model:@topic_comment, url: topic_topic_comments_path(@topic) do |f| %>
           <div class="card-body">

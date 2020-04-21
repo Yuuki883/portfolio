@@ -21,8 +21,11 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
-    @topic.save
-    redirect_to edit_topic_path(@topic.id), notice: "掲示板を作成しました！"
+    if @topic.save
+      redirect_to edit_topic_path(@topic.id), notice: "掲示板を作成しました！"
+    else
+      render "new"
+    end
   end
 
   def edit

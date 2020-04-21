@@ -8,12 +8,29 @@ ja:
       truncate: '...'
 
   activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      topic: 掲示板
+      map: スポットマップ
+    attributes:
+      user:
+        name: ユーザー名
+        introduction: 自己紹介
+        like_age: 好きな時代
+        like_busho: 好きな武将
+      post:
+        place_name: 訪れた場所
+        title: タイトル
+        content: 本文
+        post_images: 投稿画像
+      topic:
+        title: タイトル
     errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: '%{record}が存在しているので削除できません'
-          has_many: '%{record}が存在しているので削除できません'
+      record_invalid: 'バリデーションに失敗しました: %{errors}'
+      restrict_dependent_destroy:
+        has_one: '%{record}が存在しているので削除できません'
+        has_many: '%{record}が存在しているので削除できません'
   date:
     abbr_day_names:
       - 日

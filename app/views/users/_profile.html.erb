@@ -42,14 +42,26 @@
         <div class="user-introduce mt-3 ml-3 mr-3">
           <div class="introduce">
             <div class="user-introduce">
-              <%= user.introduction %>
+              <% if user.introduction.blank? %>
+              <p>まだ自己紹介はありません</p>
+              <% else%>
+              <%= safe_join(user.introduction.split("\n"), tag(:br)) %>
+              <% end %>
             </div>
           </div>
           <div class="area user-age">
+            <% if user.like_age.blank? %>
+            <p>まだ登録していません</p>
+            <% else %>
             <%= user.like_age %>
+            <% end %>
           </div>
           <div class="area user-busho">
+            <% if user.like_busho.blank? %>
+            <p>まだ登録していません</p>
+            <% else %>
             <%= user.like_busho %>
+            <% end %>
           </div>
         </div>
         <% if @user.id == current_user.id %>
@@ -112,10 +124,10 @@
       <small class="float-right"><%= post.created_at.to_s(:datetime_jp)  %></small>
       <h4 class="card-title"><strong><%= post.place_name %></strong></h4>
       <h5 class="card-subtitle"><strong><%= post.title %><strong></h5>
-      <p class="card-text"><%= post.content %></p>
+      <p class="card-text"><%= safe_join(post.content.split("\n"), tag(:br)) %></p>
       <div class="img-rounded pull-left profile-thum">
         <% post.post_images.each do |image| %>
-        <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+        <%= attachment_image_tag image, :image, :fill, 140, 140, fallback: "no_image.jpg" %>
         <% end %>
       </div>
       <div id="favorites_buttons_<%= post.id %>">

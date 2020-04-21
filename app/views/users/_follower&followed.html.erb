@@ -13,7 +13,7 @@
     <% users.each do |user| %>
     <tr>
       <td><%= attachment_image_tag(user, :image, :fill, 100, 100, class: "rounded-circle", fallback:
-                    "no_image.jpg", size:'100x100') %></td>
+                    "no_image.jpg", size:'120x120') %></td>
       <td><strong><%= link_to user.name, user_path(user.id) %></strong></td>
       <td><strong><%= user.follower.count %></strong> </td>
       <td><strong class="text-center"><%= user.followed.count %></td></strong>

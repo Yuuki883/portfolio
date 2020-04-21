@@ -8,7 +8,8 @@
     <h2 class="text-align: text-center">
       <strong class="fas fa-chalkboard">掲示板作成</strong></h2>
     <div class="mx-auto">
-      <%= form_with model:@topic do |f| %>
+      <%= form_with model:@topic, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <form>
         <h2 class="strong"><%= f.label :タイトル, class:"fas fa-clipboard-list"%></h2>
         <%= f.text_field :title, class:'form-control' %>

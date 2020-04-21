@@ -45,10 +45,10 @@
             <strong><%= post.place_name %></strong>
           </h4>
           <h5 class="card-subtitle"><strong><%= post.title %></strong></h5>
-          <p class="card-text"><%= post.content %></p>
+          <p class="card-text"><%= safe_join(post.content.split("\n"), tag(:br)) %></p>
           <div class="img-rounded pull-left profile-thum">
             <% post.post_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+            <%= attachment_image_tag image, :image, :fill, 140, 140, fallback: "no_image.jpg" %>
             <% end %>
           </div>
           <div id="favorites_buttons_<%= post.id %>">
