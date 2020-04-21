@@ -1,23 +1,28 @@
 <table class='table text-center'>
-    <thead>
-        <tr>
-            <th>プロフィール画像</th>
-            <th>ユーザー</th>
-            <th>フォロー</th>
-            <th>フォロワー</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>プロフィール画像</th>
+      <th>ユーザー</th>
+      <th>フォロー</th>
+      <th>フォロワー</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-    <tbody>
-        <% users.each do |user| %>
-        <tr>
-            <td><%= attachment_image_tag(user, :image, :fill, 100, 100, class: "rounded-circle", fallback:
+  <tbody>
+    <% users.each do |user| %>
+    <tr>
+      <td><%= attachment_image_tag(user, :image, :fill, 100, 100, class: "rounded-circle", fallback:
                     "no_image.jpg", size:'100x100') %></td>
-            <td><strong><%= link_to user.name, user_path(user.id) %></strong></td>
-            <td><strong><%= user.follower.count %></strong> </td>
-            <td><strong class="text-center"><%= user.followed.count %></td></strong>
-        </tr>
-        <% end %>
-    </tbody>
+      <td><strong><%= link_to user.name, user_path(user.id) %></strong></td>
+      <td><strong><%= user.follower.count %></strong> </td>
+      <td><strong class="text-center"><%= user.followed.count %></td></strong>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
+<div class="row">
+  <div class="mx-auto">
+    <%= paginate @users %>
+  </div>
+</div>
