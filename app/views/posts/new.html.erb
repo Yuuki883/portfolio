@@ -1,15 +1,15 @@
 <html>
 
 <head>
-    <% set_meta_tags title: "投稿作成ページ", description: 'このページで自分が訪れた観光地の情報を入力して投稿することができます。' %>
+  <% set_meta_tags title: "投稿作成ページ", description: 'このページで自分が訪れた観光地の情報を入力して投稿することができます。' %>
 </head>
 
 <body>
+  <br>
+  <h1 class="mx-auto fas fa-edit">
+    投稿</h1>
+  <div class="container">
+    <%= render "posts/form", post: @post %>
     <br>
-    <div class="container">
-        <h1 class="text-align: text-center">
-            <strong class="fas fa-edit">訪問情報投稿</strong></h1>
-        <%= render "posts/form", post: @post %>
-        <br>
-    </div>
+  </div>
 </body>
