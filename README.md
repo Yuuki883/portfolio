@@ -1,5 +1,5 @@
 # アプリケーションの概要
-歴史好きのユーザー同士の交流を目的とした、総合SNS型WEBサービス。
+・歴史好きのユーザー同士の交流を目的とした、総合SNS型WEBサービス。
 ・http://rails-portfolio-1712854299.ap-northeast-1.elb.amazonaws.com/
 
 # 技術的ポイント
