@@ -1,6 +1,6 @@
 # アプリケーションの概要
 歴史好きのユーザー同士の交流を目的とした、総合SNS型WEBサービス  
-http://rails-portfolio-1712854299.ap-northeast-1.elb.amazonaws.com
+http://rails-portfolio-1712854299.ap-northeast-1.elb.amazonaws.com 
 ログイン画面に採用担当者ログイン専用のメールアドレスとパスワードを設定しております。よろしければそちらを使用してお入りください。
 
 # 技術的ポイント
