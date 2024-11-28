@@ -37,3 +37,6 @@ http://rails-portfolio-1712854299.ap-northeast-1.elb.amazonaws.com
 　AWS RDS, mysql  
 ■Webサーバー  
 　Nginx  
+
+# ER図
+ [ヒストリアン_ER図.pdf](https://github.com/user-attachments/files/17950543/_ER.pdf)
